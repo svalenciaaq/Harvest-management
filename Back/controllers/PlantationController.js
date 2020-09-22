@@ -1,8 +1,7 @@
-
 const express = require('express')
 var router = express.Router()
 var ObjectID = require('mongoose').Types.ObjectId
-var  Plant = require('../model/Plant')
+var  Plantation = require('../model/Plantation')
 
 
 
@@ -10,7 +9,7 @@ var  Plant = require('../model/Plant')
 const controller = {}
 
 controller.add = async (req, res) => {
-    var newRecord = new Plant({
+    var newRecord = new Plantation({
         name: req.body.name,
         description: req.body.description
     })
@@ -22,32 +21,16 @@ controller.add = async (req, res) => {
   }
 
   controller.list = async ( req, res) => {
-    const plants = await Plant.find();
+    const plantation = await Plantation.find();
     res.render('index', {title:
-        plants
+        plantation
       });
 
 }
 
-controller.findOne = async (req , res) =>{
-  Plant.findById(req.params.id)
-  .then((plant) => {
-    if (!plant) {
-      return res.status(404).send({
-        message: "User not found with id " + req.params.id,
-      });
-    }
-    res.status(200).send(plant);
-    console.log(plant);
-  })
-  .catch((err) => {
-    return res.status(500).send({
-      message: "Error retrieving user with id " + req.params.id,
-    });
-});
-}
+
 controller.delete = async (req , res) =>{
-  Plant.findByIdAndRemove(req.params.id, (error, data) => {
+  Plantation.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
