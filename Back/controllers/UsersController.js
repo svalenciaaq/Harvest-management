@@ -5,7 +5,7 @@ var sequelize = require('../models/database');
 
 const controller = {}
 
-controller.test = async  (req, res) => {
+controller.test =  (req, res) => {
     const response = await sequelize.sync().then(function() {
     
 
@@ -29,7 +29,7 @@ controller.test = async  (req, res) => {
   
   }
 
-  controller.list = async ( req, res) => {
+  controller.list =  ( req, res) => {
 
     const data = await User.findAll();
     res.json(data)
