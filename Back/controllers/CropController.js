@@ -1,6 +1,5 @@
 const express = require('express')
 var router = express.Router()
-var ObjectID = require('mongoose').Types.ObjectId
 var  Crop = require('../model/Crop')
 
 
@@ -10,8 +9,10 @@ const controller = {}
 
 controller.add = async (req, res) => {
     var newRecord = new Crop({
-        name: req.body.name,
-        description: req.body.description
+      location: req.body.location,
+      administrator: req.body.administrator,
+      picture:req.body.picture,
+      dateofinaguration:req.body.dateofinaguration,
     })
 
     newRecord.save((err, docs) => {
@@ -21,10 +22,16 @@ controller.add = async (req, res) => {
   }
 
   controller.list = async ( req, res) => {
-    const plants = await Crop.find();
-    res.render('index', {title:
-        plants
-      });
+    const crops = await Crop.find()
+    .then(crops =>{
+      res.send(crops)
+    })
+      .catch(err => {
+        res.status(500).send({
+          message:
+              err.message || "Some error occurred while retrieving tutorials."
+        });
+    });
 
 }
 

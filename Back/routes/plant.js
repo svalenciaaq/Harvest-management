@@ -7,9 +7,12 @@ var PlantController = require("../controllers/PlantController");
 
 
 router.get('/list',PlantController.list);
-router.delete('/delete' , PlantController.delete);
+router.delete('/delete/:id' , PlantController.delete);
 router.post('/add', PlantController.add);
 router.put('/edit', PlantController.edit);
+
+
+router.get('/findOne/:id', PlantController.findOne);
 
 
 

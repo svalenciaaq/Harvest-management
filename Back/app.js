@@ -7,6 +7,8 @@ var cors = require("cors");
 
 var indexRouter = require('./routes/index');
 var PlantRouter = require('./routes/plant');
+var CropRouter = require('./routes/crop');
+var UserRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
@@ -28,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/plant', PlantRouter);
+app.use('/crop', CropRouter);
+app.use('/user', UserRouter);
 
 
 // catch 404 and forward to error handler

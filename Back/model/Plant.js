@@ -3,13 +3,22 @@ var Schema = mongoose.Schema;
 
 
 let plant = new Schema({
-    plant_name:{
-        type: String
+    type:{
+        type: String, required:false
     },
 
-    plant_description:{
+    date:{
+        type:String, required:false
+    },
+
+    picture:{
         type:String
     },
+
+    crop:{
+        type:String, required:false
+    },
+
 })
 
 

@@ -1,39 +1,37 @@
-var User = require('../models/Users');
-var Role = require('../models/Role');
-var sequelize = require('../models/database');
+var User = require('../model/Users');
+
 
 
 const controller = {}
 
-controller.test =  (req, res) => {
-    const response = await sequelize.sync().then(function() {
-    
+controller.add = async (req, res) => {
+    var newRecord = new User({
+        name: req.body.name,
+        email: req.body.email,
+        dni: req.body.dni,
+        cellphone:req.body.cellphone,
+        rol: req.body.rol
+    })
 
-
-        Role.create({
-            name:  'Admin',
-            description: 'Admin'
-         });
-      User.create({
-          name: 'Santiago valencia',
-          email: 'sanvalenciaarango@gmail.com',
-          dni: '1214746404',
-          password: 'santii4',
-          rolId: 1
-      })
-     });
-     res.json(response)
-   
-   
-   
-  
+    newRecord.save((err, docs) => {
+        if (!err) res.send(docs)
+        else console.log('Error while creating new record : ' + JSON.stringify(err, undefined, 2))
+    })
   }
+     
 
-  controller.list =  ( req, res) => {
-
-    const data = await User.findAll();
-    res.json(data)
-
-}
+  controller.list =  async ( req, res) => {
+    const users = await User.find()
+    .then(users =>{
+      res.send(users)
+    })
+      .catch(err => {
+        res.status(500).send({
+          message:
+              err.message || "Some error occurred while retrieving tutorials."
+        });
+    });
+  }
+    
   
   module.exports = controller;

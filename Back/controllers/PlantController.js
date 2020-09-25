@@ -11,8 +11,10 @@ const controller = {}
 
 controller.add = async (req, res) => {
     var newRecord = new Plant({
-        name: req.body.name,
-        description: req.body.description
+        type: req.body.type,
+        date: req.body.date,
+        picture: req.body.picture,
+        crop:req.body.crop
     })
 
     newRecord.save((err, docs) => {
@@ -22,12 +24,22 @@ controller.add = async (req, res) => {
   }
 
   controller.list = async ( req, res) => {
-    const plants = await Plant.find();
-    res.render('index', {title:
-        plants
+    const plants = await Plant.find()
+      .then(plants =>{
+        res.send(plants)
+      })
+        .catch(err => {
+          res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving tutorials."
+          });
       });
+      
+      }
+    
+    
 
-}
+
 
 controller.findOne = async (req , res) =>{
   Plant.findById(req.params.id)
@@ -35,7 +47,9 @@ controller.findOne = async (req , res) =>{
     if (!plant) {
       return res.status(404).send({
         message: "User not found with id " + req.params.id,
-      });
+      })
+      
+   
     }
     res.status(200).send(plant);
     console.log(plant);

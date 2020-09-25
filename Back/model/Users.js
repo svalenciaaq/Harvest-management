@@ -3,13 +3,26 @@ var Schema = mongoose.Schema;
 
 
 let user = new Schema({
-    user_name:{
-        type: String
+    name:{
+        type: String, required:false
     },
 
-    user_description:{
-        type:String
+    email:{
+        type: String, required:false
     },
+
+    dni:{
+        type:String, required:false
+    },
+
+    cellphone:{
+        type:String, required:false
+    },
+
+    rol:{
+        type:String, required:false
+    },
+    
 })
 
 
