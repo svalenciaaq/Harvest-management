@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import PlantDateService from "../../services/PlantService";
+import { Link} from "react-router-dom";
 
 class CreatePlant extends Component {
 
@@ -15,7 +16,7 @@ class CreatePlant extends Component {
     this.onChangeCropPlant = this.onChangeCropPlant.bind(this)
     this.savePlant = this.savePlant.bind(this);
     this.newPlant = this.newPlant.bind(this);
-
+   
     // setting up state
     this.state = {
         type: '',
@@ -75,8 +76,10 @@ newPlant() {
     crop: this.state.crop,
     submitted:false
   });
+
   
 }
+
 
   render() {
   return (
@@ -102,7 +105,11 @@ newPlant() {
                   <Form.Control type="text" value={this.state.crop} onChange={this.onChangeCropPlant} />
               </Form.Group>
 
-              <Button onClick={this.savePlant} size="lg"  type="submit">Save</Button>
+              <Button onClick={this.savePlant}  className="badge badge-primary" type="submit">Save</Button>
+              <Link to="/plant"  className="badge badge-primary">Back</Link>
+
+             
+                  
           </Form>
 
       </div>

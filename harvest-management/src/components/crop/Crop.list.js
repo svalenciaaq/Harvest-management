@@ -128,7 +128,12 @@ export default class CropList extends Component {
                 </li>
               ))}
           </ul>
-
+          <Link
+                to={"crop/add/"}
+                className="badge badge-primary"
+              >
+                Add
+              </Link>
           
         </div>
         <div className="col-md-6">

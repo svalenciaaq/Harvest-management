@@ -128,7 +128,12 @@ export default class UserList extends Component {
                 </li>
               ))}
           </ul>
-
+          <Link
+                to={"user/add/"}
+                className="badge badge-primary"
+              >
+                Add
+              </Link>
           
         </div>
         <div className="col-md-6">
@@ -181,7 +186,7 @@ export default class UserList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
+              <p>Please click on a Plant</p>
             </div>
           )}
         </div>

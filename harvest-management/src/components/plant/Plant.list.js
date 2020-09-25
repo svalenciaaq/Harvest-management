@@ -87,7 +87,7 @@ export default class PlantList extends Component {
   } */
 
   render() {
-    const { searchTitle, plantas, currentPlant, currentIndex } = this.state;
+    const {  plantas, currentPlant, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -126,12 +126,22 @@ export default class PlantList extends Component {
                   key={index}
                 >
                   {plant.type}
-
+                    
                   
                 </li>
-              ))}
-          </ul>
 
+                
+              ))}
+
+          </ul>
+          <ul>
+          <Link
+                to={"plant/add/"}
+                className="badge badge-primary"
+              >
+                Add
+              </Link>
+          </ul>
           
         </div>
         <div className="col-md-6">
@@ -179,7 +189,7 @@ export default class PlantList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
+              <p>Please click on a Plant</p>
             </div>
           )}
         </div>

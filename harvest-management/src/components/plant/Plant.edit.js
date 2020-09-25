@@ -58,11 +58,33 @@ export default class Tutorial extends Component {
       });
   }
 
+  updatePlant(id) {
+    var data= {
+      type: this.state.type,
+      date: this.state.date,
+      picture: this.state.picture,
+      crop: this.state.crop
+    };
+    PlantDataService.update(data,)
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+            type: this.state.type,
+            date: this.state.date,
+            picture: this.state.picture,
+            crop: this.state.crop
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
 
   render() {
     return (
       <div>
-        
+          
           <div className="edit-form">
             <h4>Plant</h4>
             <Form onSubmit={this.onSubmit}>
@@ -73,21 +95,22 @@ export default class Tutorial extends Component {
 
               <Form.Group controlId="date">
                   <Form.Label>Date:</Form.Label>
-                  <Form.Control type="date" value={this.state.date} onChange={this.onChangeDatePlant} />
+                  <Form.Control type="date" value={this.state.date} onChange={this.onChangeDate} />
               </Form.Group>
 
               <Form.Group controlId="picture">
                   <Form.Label>Picture</Form.Label>
-                  <Form.Control type="text" value={this.state.picture} onChange={this.onChangePicturePlant} />
+                  <Form.Control type="text" value={this.state.picture} onChange={this.onChangePicture} />
               </Form.Group>
 
               <Form.Group controlId="crop">
                   <Form.Label>Crop</Form.Label>
-                  <Form.Control type="text" value={this.state.crop} onChange={this.onChangeCropPlant} />
+                  <Form.Control type="text" value={this.state.crop} onChange={this.onChangeCrop} />
               </Form.Group>
 
-              <Button onClick={this.savePlant} size="lg"  type="submit">Save</Button>
+              <Button onClick={this.updatePlant} size="lg"  type="submit">Save</Button>
           </Form>
+        
             <button
               type="submit"
               className="badge badge-success"
@@ -97,13 +120,12 @@ export default class Tutorial extends Component {
             </button>
             <p>{this.state.message}</p>
           </div>
-      
+         
           <div>
+            
             <br />
             <p>Please click on a Tutorial...</p>
           </div>
-        
-         
       </div>
     );
   }

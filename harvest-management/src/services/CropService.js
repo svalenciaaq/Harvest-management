@@ -22,11 +22,11 @@ class CropDataService {
   }
 
   deleteAllPlant() {
-    return http.delete(`/tutorials`);
+    return http.delete(`/`);
   }
 
   findByTitlePlant(title) {
-    return http.get(`/tutorials?title=${title}`);
+    return http.get(`/?title=${title}`);
   }
 }
 

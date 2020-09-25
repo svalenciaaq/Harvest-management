@@ -2,7 +2,7 @@ import React, {  Component } from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import CropDataService from "../../services/CropService";
-
+import { Link} from "react-router-dom";
 
 class Createcrop extends Component {
 
@@ -78,9 +78,6 @@ newCrop() {
   });
   
 }
-
-
-
   render() {
   return (
       <div className="form-wrapper">
@@ -105,7 +102,8 @@ newCrop() {
                   <Form.Control type="text" value={this.state.dateofinaguration} onChange={this.onChangeDateofinagurationCrop} />
               </Form.Group>
 
-              <Button onClick={this.saveCrop} size="lg" block="block" type="submit">Save</Button>
+              <Button onClick={this.saveCrop} className="badge badge-primary" type="submit">Save</Button>
+              <Link to="/user"  className="badge badge-primary" >Back</Link>
           </Form>
 
       </div>

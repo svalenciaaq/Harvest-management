@@ -2,6 +2,7 @@ import React, {Component } from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import UserDataService from "../../services/UserService";
+import { Link} from "react-router-dom";
 
 class CreateUser extends Component {
 
@@ -116,7 +117,8 @@ newUser() {
               </Form.Group>
 
 
-              <Button onClick={this.saveUser} size="lg"  type="submit">Save</Button>
+              <Button onClick={this.saveUser} className="badge badge-primary" type="submit">Save</Button>
+              <Link to="/user"  className="badge badge-primary">Back</Link>
           </Form>
 
       </div>
