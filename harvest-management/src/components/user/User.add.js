@@ -117,8 +117,8 @@ newUser() {
               </Form.Group>
 
 
-              <Button onClick={this.saveUser} className="badge badge-primary" type="submit">Save</Button>
-              <Link to="/user"  className="badge badge-primary">Back</Link>
+              <Button onClick={this.saveUser} className="btn btn-primary mr-2 mt-2" type="submit">Save</Button>
+              <Link to="/user"  className="btn btn-primary mr-2 mt-2">Back</Link>
           </Form>
 
       </div>

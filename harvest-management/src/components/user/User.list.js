@@ -130,7 +130,7 @@ export default class UserList extends Component {
           </ul>
           <Link
                 to={"user/add/"}
-                className="badge badge-primary"
+                className="btn btn-primary mr-2 mt-2"
               >
                 Add
               </Link>
@@ -175,7 +175,7 @@ export default class UserList extends Component {
 
               <Link
                 to={"User/edit/" + currentUser._id}
-                className="badge badge-warning"
+                className="btn btn-primary mr-2 mt-2"
               >
                 Edit
               </Link>

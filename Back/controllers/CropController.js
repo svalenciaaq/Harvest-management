@@ -37,7 +37,7 @@ controller.add = async (req, res) => {
 
 
 controller.delete = async (req , res) =>{
-  Plant.findByIdAndRemove(req.params.id, (error, data) => {
+  Crop.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -50,7 +50,44 @@ controller.delete = async (req , res) =>{
 
 
 controller.edit = async (req, res) => {
+
+  const id = req.params.id;
+
+  Crop.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
+        });
+      } else res.send({ message: "Tutorial was updated successfully." });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Tutorial with id=" + id
+      });
+    });
   
+}
+
+
+controller.findOne = async (req , res) =>{
+  Crop.findById(req.params.id)
+  .then((crop) => {
+    if (!crop) {
+      return res.status(404).send({
+        message: "User not found with id " + req.params.id,
+      })
+      
+   
+    }
+    res.status(200).send(crop);
+    console.log(crop);
+  })
+  .catch((err) => {
+    return res.status(500).send({
+      message: "Error retrieving user with id " + req.params.id,
+    });
+});
 }
   
   module.exports = controller;

@@ -13,15 +13,15 @@ class CropDataService {
     return http.post("/crop/add", data);
   }
 
-  updatePlant(id, data) {
-    return http.put(`/crop/update/${id}`, data);
+  updateCrop(id, data) {
+    return http.put(`/crop/edit/${id}`, data);
   }
 
-  deletePlant(id) {
+  deleteCrop(id) {
     return http.delete(`/crop/delete/${id}`);
   }
 
-  deleteAllPlant() {
+  deleteAllCrop() {
     return http.delete(`/`);
   }
 

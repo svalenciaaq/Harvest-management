@@ -65,6 +65,12 @@ savePlant(){
   .catch(e =>{
     console.log(e)
   });
+  this.redirect()
+}
+
+
+redirect() {
+  this.props.history.push('/plant')
 }
 
 newPlant() {
@@ -105,13 +111,12 @@ newPlant() {
                   <Form.Control type="text" value={this.state.crop} onChange={this.onChangeCropPlant} />
               </Form.Group>
 
-              <Button onClick={this.savePlant}  className="badge badge-primary" type="submit">Save</Button>
-              <Link to="/plant"  className="badge badge-primary">Back</Link>
+              <Button onClick={this.savePlant}  className="btn btn-primary mr-2 " type="submit">Save</Button>
+              <Link to="/plant"  className="btn btn-primary mr-2 ">Back</Link>
 
              
-                  
+       
           </Form>
-
       </div>
   );
 }

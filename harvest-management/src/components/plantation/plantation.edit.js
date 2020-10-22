@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PlantDataService from "../../services/PlantService";
+import PlantationDataService from "../../services/PlantationService";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 export default class Tutorial extends Component {
@@ -9,7 +9,7 @@ export default class Tutorial extends Component {
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onChangePicture = this.onChangePicture.bind(this);
     this.onChangeCrop = this.onChangeCrop.bind(this);
-    this.getTutorial = this.getTutorial.bind(this);
+    this.getPlantation = this.getPlantation.bind(this);
     this.updatePlant = this.updatePlant.bind(this);
     this.redirect = this.redirect.bind(this);
   
@@ -25,7 +25,7 @@ export default class Tutorial extends Component {
   }
 
   componentDidMount() {
-    this.getTutorial(this.props.match.params.id);
+    this.getPlantation(this.props.match.params.id);
   }
 
   onChangeTypePlant(e) {
@@ -85,7 +85,7 @@ export default class Tutorial extends Component {
   }
   
 
-  getTutorial(id) {
+  getPlantation(id) {
     PlantDataService.get(id)
       .then(response => {
         this.setState({
@@ -113,11 +113,11 @@ export default class Tutorial extends Component {
       .catch(e => {
         console.log(e);
       });
-      this.props.history.push('/plant/show/' + this.state.currentPlant._id);
+      this.props.history.push('/plantation/show/' + this.state.currentPlant._id);
   }
 
   redirect(){
-    this.props.history.push('/plant/show/' + this.state.currentPlant._id);
+    this.props.history.push('/plantation/show/' + this.state.currentPlant._id);
   }
    
 

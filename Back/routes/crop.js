@@ -5,10 +5,10 @@ var CropController = require("../controllers/CropController");
 
 
 router.get('/list',CropController.list);
-router.delete('/delete' , CropController.delete);
+router.delete('/delete/:id' , CropController.delete);
 router.post('/add', CropController.add);
-router.put('/edit', CropController.edit);
-
+router.put('/edit/:id', CropController.edit);
+router.get('/findOne/:id', CropController.findOne);
 
 
 module.exports = router

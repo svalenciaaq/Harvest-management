@@ -10,8 +10,10 @@ const controller = {}
 
 controller.add = async (req, res) => {
     var newRecord = new Plantation({
-        name: req.body.name,
-        description: req.body.description
+        address: req.body.address,
+        adminstrator: req.body.adminstrator,
+        crops: req.body.crops,
+        picture: req.body.picture
     })
 
     newRecord.save((err, docs) => {
@@ -43,7 +45,11 @@ controller.delete = async (req , res) =>{
 
 
 controller.edit = async (req, res) => {
-  
+  plantation.findByIdAndUpdate(req.params.id, req.data, function (err, category) {
+    if (err) return callback(err);
+    
+  });
 }
+
   
   module.exports = controller;

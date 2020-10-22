@@ -1,42 +1,42 @@
 import React, { Component } from "react";
-import CropDataService from "../../services/CropService";
+import PlantationDataService from "../../services/PlantationService";
 import { Link } from "react-router-dom";
 
-export default class CropList extends Component {
+export default class PlantationList extends Component {
   constructor(props) {
     super(props);
     //this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveCrop = this.retrieveCrop.bind(this);
+    this.retrievePlantation = this.retrievePlantation.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveCrop = this.setActiveCrop.bind(this);
-    this.deleteCrop = this.deleteCrop.bind(this);
+    this.setActivePlantation = this.setActivePlantation.bind(this);
+    this.deletePlantation = this.deletePlantation.bind(this);
   //  this.searchTitle = this.searchTitle.bind(this);
 
     this.state = {
-      cropes: [],
-      currentCrop: null,
+      plantations: [],
+      currentPlantation: null,
       currentIndex: -1,
       searchTitle: ""
     };
   }
 
   componentDidMount() {
-    this.retrieveCrop();
+    this.retrievePlantation();
   }
 
- /*  onChangeSearchTitle(e) {
+  /* onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
 
     this.setState({
       searchTitle: searchTitle
     });
-  }
- */
-  retrieveCrop() {
-    CropDataService.getAll()
+  } */
+
+  retrievePlantation() {
+    PlantationDataService.getAll()
       .then(response => {
         this.setState({
-          cropes: response.data
+          plantations: response.data
         });
         console.log(response.data);
       })
@@ -46,22 +46,23 @@ export default class CropList extends Component {
   }
 
   refreshList() {
-    this.retrieveCrop();
+    this.retrievePlantation();
     this.setState({
-      currentCrop: null,
+      currentPlantation: null,
       currentIndex: -1
+      
     });
   }
 
-  setActiveCrop(crop, index) {
+  setActivePlantation(plantation, index) {
     this.setState({
-      currentCrop: crop,
+      currentPlantation: plantation,
       currentIndex: index
     });
   }
 
-  deleteCrop(id) {
-   CropDataService.deleteCrop(id)
+  deletePlantation(id) {
+   PlantationDataService.deletePlantation(id)
       .then(response => {
         console.log(response.data);
         this.refreshList();
@@ -73,24 +74,24 @@ export default class CropList extends Component {
   }
 
   /* searchTitle() {
-    CropDataService.findByTitle(this.state.searchTitle)
+    PlantationDataService.findByTitle(this.state.searchTitle)
       .then(response => {
         this.setState({
-          Crop: response.data
+          plant: response.data
         });
         console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
-  }
- */
+  } */
+
   render() {
-    const { searchTitle, cropes, currentCrop, currentIndex } = this.state;
+    const {  plantations, currentPlantation, currentIndex } = this.state;
 
     return (
       <div className="list row">
-      {/*   <div className="col-md-8">
+     {/*    <div className="col-md-8">
           <div className="input-group mb-3">
             <input
               type="text"
@@ -111,66 +112,75 @@ export default class CropList extends Component {
           </div>
         </div> */}
         <div className="col-md-6">
-          <h4>Crop List</h4>
+          <h4>Plantation List</h4>
 
           <ul className="list-group">
-            {cropes &&
-              cropes.map((crop, index) => (
+            {plantations &&
+              plantations.map((plantation, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveCrop(crop, index)}
+                  onClick={() => this.setActivePlantation(plantation, index)}
                   key={index}
                 >
-                  {crop.location}
+                  {plantation.type}
+                    
+                  
                 </li>
+
+                
               ))}
+
           </ul>
+          <ul>
           <Link
-                to={"crop/add/"}
+                to={"plantation/add/"}
                 className="btn btn-primary mr-2 mt-2"
               >
                 Add
               </Link>
+          </ul>
           
         </div>
         <div className="col-md-6">
-          {currentCrop ? (
+          {currentPlantation ? (
             <div>
-              <h4>Crop</h4>
+              <h4>Plant</h4>
               <div>
                 <label>
-                  <strong>Location</strong>
+                  <strong>Type</strong>
                 </label>{" "}
-                {currentCrop.location}
+                {currentPlantation.type}
               </div>
               <div>
                 <label>
-                  <strong>Administrator</strong>
+                  <strong>Date</strong>
                 </label>{" "}
-                {currentCrop.administrator}
+                {currentPlantation.date}
               </div>
               <div>
                 <label>
                   <strong>picture</strong>
                 </label>{" "}
-                {currentCrop.picture}
+                {currentPlantation.picture}
               </div>
+
+             
+                  
               <div>
                 <label>
-                  <strong>Date of inaguaration
-                  </strong>
+                  <strong>crop</strong>
                 </label>{" "}
-                {currentCrop.dateofinaguration}
+                {currentPlantation.crop}
               </div>
 
               <Link
-                to={"Crop/show/" + currentCrop._id}
-                className="btn btn-primary mr-2 "
+                to={"plant/edit/" + currentPlantation._id}
+                className="btn btn-primary mr-2 mt-2"
               >
-                Show
+                Edit
               </Link>
 
            
@@ -179,7 +189,7 @@ export default class CropList extends Component {
           ) : (
             <div>
               <br />
-              <p>Escoge un cultivo</p>
+              <p>Please click on a Plantation</p>
             </div>
           )}
         </div>

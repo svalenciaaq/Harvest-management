@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlantDataService from "../../services/PlantService";
 import { Link } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal'
 
 export default class PlantList extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ export default class PlantList extends Component {
     });
   }
 
-  deletePlant(id) {
+  async deletePlant(id) {
    PlantDataService.deletePlant(id)
       .then(response => {
         console.log(response.data);
@@ -88,29 +89,11 @@ export default class PlantList extends Component {
 
   render() {
     const {  plantas, currentPlant, currentIndex } = this.state;
-
+  
     return (
       <div className="list row">
-     {/*    <div className="col-md-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by title"
-              value={searchTitle}
-              onChange={this.onChangeSearchTitle}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchTitle}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div> */}
+       
+     
         <div className="col-md-6">
           <h4>Plant List</h4>
 
@@ -129,15 +112,13 @@ export default class PlantList extends Component {
                     
                   
                 </li>
-
-                
               ))}
 
           </ul>
           <ul>
           <Link
                 to={"plant/add/"}
-                className="badge badge-primary"
+                className="btn btn-primary  mt-2"
               >
                 Add
               </Link>
@@ -177,13 +158,11 @@ export default class PlantList extends Component {
               </div>
 
               <Link
-                to={"plant/edit/" + currentPlant._id}
-                className="badge badge-warning"
+                to={"plant/show/" + currentPlant._id}
+                className="btn btn-primary mr-2 mt-2"
               >
-                Edit
+                Show
               </Link>
-
-           
 
             </div>
           ) : (
@@ -194,8 +173,16 @@ export default class PlantList extends Component {
           )}
         </div>
       </div>
+
+
+
     );
+
+
+    
   }
+
+  
 
   }
 
