@@ -125,7 +125,7 @@ export default class PlantationList extends Component {
                   onClick={() => this.setActivePlantation(plantation, index)}
                   key={index}
                 >
-                  {plantation.type}
+                  {plantation.address}
                     
                   
                 </li>
@@ -147,24 +147,24 @@ export default class PlantationList extends Component {
         <div className="col-md-6">
           {currentPlantation ? (
             <div>
-              <h4>Plant</h4>
+              <h4>Plantation</h4>
               <div>
                 <label>
                   <strong>Type</strong>
                 </label>{" "}
-                {currentPlantation.type}
+                {currentPlantation.address}
               </div>
               <div>
                 <label>
                   <strong>Date</strong>
                 </label>{" "}
-                {currentPlantation.date}
+                {currentPlantation.administrator}
               </div>
               <div>
                 <label>
                   <strong>picture</strong>
                 </label>{" "}
-                {currentPlantation.picture}
+                {currentPlantation.crops}
               </div>
 
              
@@ -173,14 +173,14 @@ export default class PlantationList extends Component {
                 <label>
                   <strong>crop</strong>
                 </label>{" "}
-                {currentPlantation.crop}
+                {currentPlantation.picture}
               </div>
 
               <Link
-                to={"plant/edit/" + currentPlantation._id}
+                to={"plantation/show/" + currentPlantation._id}
                 className="btn btn-primary mr-2 mt-2"
               >
-                Edit
+                Show
               </Link>
 
            

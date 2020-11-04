@@ -5,19 +5,19 @@ import Button from "react-bootstrap/Button";
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
-    this.onChangeTypePlant = this.onChangeTypePlant.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
+    this.onChangeAddressPlant = this.onChangeAddressPlant.bind(this);
+    this.onChangeAdministrator = this.onChangeAdministrator.bind(this);
     this.onChangePicture = this.onChangePicture.bind(this);
-    this.onChangeCrop = this.onChangeCrop.bind(this);
+    this.onChangeCrops = this.onChangeCrops.bind(this);
     this.getPlantation = this.getPlantation.bind(this);
-    this.updatePlant = this.updatePlant.bind(this);
+    this.updatePlantation = this.updatePlantation.bind(this);
     this.redirect = this.redirect.bind(this);
   
     this.state = {
-      currentPlant: {
+      currentPlantation: {
         _id: null,
-        type: '',
-        date: '',
+        address: '',
+        administrator: '',
         picture: '',
         crop:'',
       },
@@ -28,14 +28,14 @@ export default class Tutorial extends Component {
     this.getPlantation(this.props.match.params.id);
   }
 
-  onChangeTypePlant(e) {
-    const type = e.target.value;
+  onChangeAddressPlant(e) {
+    const address = e.target.value;
    
     this.setState(function(prevState) {
       return {
-        currentPlant: {
-          ...prevState.currentPlant,
-          type: type
+        currentPlantation: {
+          ...prevState.currentPlantation,
+          address: address
          
         }
         
@@ -45,14 +45,14 @@ export default class Tutorial extends Component {
 
   }
   
-  onChangeDate(e) {
-    const date = e.target.value;
+  onChangeAdministrator(e) {
+    const administrator = e.target.value;
     
     this.setState(function(prevState) {
       return {
-        currentPlant: {
-          ...prevState.currentPlant,
-          date: date
+        currentPlantation: {
+          ...prevState.currentPlantation,
+          administrator: administrator
         }
       };
     });
@@ -63,22 +63,22 @@ export default class Tutorial extends Component {
     
     this.setState(function(prevState) {
       return {
-        currentPlant: {
-          ...prevState.currentPlant,
+        currentPlantation: {
+          ...prevState.currentPlantation,
           picture: picture
         }
       };
     });
   }
   
-  onChangeCrop(e) {
-    const crop = e.target.value;
+  onChangeCrops(e) {
+    const crops = e.target.value;
     
     this.setState(function(prevState) {
       return {
-        currentPlant: {
-          ...prevState.currentPlant,
-          crop: crop
+        currentPlantation: {
+          ...prevState.currentPlantation,
+          crops: crops
         }
       };
     });
@@ -86,13 +86,13 @@ export default class Tutorial extends Component {
   
 
   getPlantation(id) {
-    PlantDataService.get(id)
+    PlantationDataService.get(id)
       .then(response => {
         this.setState({
-          currentPlant: response.data
+          currentPlantation: response.data
         });
         console.log(response.data);
-        console.log(this.state.currentPlant.type);
+        console.log(this.state.currentPlantation.type);
         console.log()
       })
       .catch(e => {
@@ -100,11 +100,11 @@ export default class Tutorial extends Component {
       });
   }
 
-  updatePlant() {
-    console.log(this.state.currentPlant._id)
-    PlantDataService.updatePlant(
-      this.state.currentPlant._id,
-      this.state.currentPlant
+  updatePlantation() {
+    console.log(this.state.currentPlantation._id)
+    PlantationDataService.updatePlantation(
+      this.state.currentPlantation._id,
+      this.state.currentPlantation
     )
       .then(response => {
         console.log(response.data);
@@ -113,18 +113,18 @@ export default class Tutorial extends Component {
       .catch(e => {
         console.log(e);
       });
-      this.props.history.push('/plantation/show/' + this.state.currentPlant._id);
+      this.props.history.push('/plantation/show/' + this.state.currentPlantation._id);
   }
 
   redirect(){
-    this.props.history.push('/plantation/show/' + this.state.currentPlant._id);
+    this.props.history.push('/plantation/show/' + this.state.currentPlantation._id);
   }
    
 
 
 
   render() {
-    const { currentPlant } = this.state;
+    const { currentPlantation } = this.state;
     return (
       <div> 
           <div className="edit-form">
@@ -132,25 +132,25 @@ export default class Tutorial extends Component {
             <Form onSubmit={this.onSubmit}>
               <Form.Group controlId="type">
                   <Form.Label>Type</Form.Label>
-                  <Form.Control type="text" value={this.state.currentPlant.type} onChange={this.onChangeTypePlant} />
+                  <Form.Control type="text" value={this.state.currentPlantation.address} onChange={this.onChangeAddressPlant} />
               </Form.Group>
 
               <Form.Group controlId="date">
                   <Form.Label>Date:</Form.Label>
-                  <Form.Control type="date" value={this.state.currentPlant.date} onChange={this.onChangeDate} />
+                  <Form.Control type="text" value={this.state.currentPlantation.administrator} onChange={this.onChangeAdministrator} />
               </Form.Group>
 
               <Form.Group controlId="picture">
                   <Form.Label>Picture</Form.Label>
-                  <Form.Control type="text" value={this.state.currentPlant.picture} onChange={this.onChangePicture} />
+                  <Form.Control type="text" value={this.state.currentPlantation.crops} onChange={this.onChangeCrops} />
               </Form.Group>
 
               <Form.Group controlId="crop">
                   <Form.Label>Crop</Form.Label>
-                  <Form.Control type="text" value={this.state.currentPlant.crop} onChange={this.onChangeCrop} />
+                  <Form.Control type="text" value={this.state.currentPlantation.picture} onChange={this.onChangePicture} />
               </Form.Group>
 
-              <Button onClick={this.updatePlant} size=""  type="submit">Save</Button>
+              <Button onClick={this.updatePlantation} size=""  type="submit">Save</Button>
           </Form>
           <button
               type="submit"

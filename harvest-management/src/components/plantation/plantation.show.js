@@ -13,10 +13,10 @@ export default class plantationShow extends Component {
 
   this.state = {
     id: "",
-    type: "",
-    date: "",
-    picture: "",
-    crop: ""
+    address: "",
+    administrator: "",
+    crops: "",
+    picture: ""
     }
  }
 
@@ -29,10 +29,10 @@ export default class plantationShow extends Component {
       .then(response => {
         this.setState({
           id: response.data._id,
-          type: response.data.type,
-          date: response.data.date,
+          address: response.data.address,
+          administrator: response.data.administrator,
+          crops: response.data.crops,
           picture: response.data.picture,
-          crop: response.data.crop,
         });
         console.log(response.data);
       })
@@ -66,10 +66,10 @@ export default class plantationShow extends Component {
 
         
             <ListGroup>
-            <ListGroup.Item>{this.state.type}</ListGroup.Item>
-            <ListGroup.Item>{this.state.date}</ListGroup.Item>
+            <ListGroup.Item>{this.state.address}</ListGroup.Item>
+            <ListGroup.Item>{this.state.administrator}</ListGroup.Item>
+            <ListGroup.Item>{this.state.crops}</ListGroup.Item>
             <ListGroup.Item>{this.state.picture}</ListGroup.Item>
-            <ListGroup.Item>{this.state.crop}</ListGroup.Item>
             </ListGroup>
             </div>
 
@@ -77,9 +77,9 @@ export default class plantationShow extends Component {
                 to={"../edit/" + this.state.id}
                 className="btn btn-primary mr-2 mt-2"
               >
-                Show more..
+                Edit
               </Link>
-            <button onClick={()=>this.deletePlantation(this.state.id)}>
+            <button class = "btn btn-primary mr-2 mt-2 "onClick={()=>this.deletePlantation(this.state.id)}>
             Delete
             </button>
         </div>

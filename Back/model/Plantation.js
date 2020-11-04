@@ -7,8 +7,8 @@ let plantation = new Schema({
         type: String, required:true
     },
 
-    adminstrator:{
-        type:Date, required:true
+    administrator:{
+        type:String, required:true
     },
 
     crops:{

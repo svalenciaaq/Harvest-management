@@ -102,8 +102,8 @@ newCrop() {
                   <Form.Control type="text" value={this.state.dateofinaguration} onChange={this.onChangeDateofinagurationCrop} />
               </Form.Group>
 
-              <Button onClick={this.saveCrop} className="badge badge-primary" type="submit">Save</Button>
-              <Link to="/user"  className="badge badge-primary" >Back</Link>
+              <Button onClick={this.saveCrop} className="btn btn-primary mr-2" type="submit">Save</Button>
+              <Link to="/user"  className="btn btn-primary mr-2" >Back</Link>
           </Form>
 
       </div>

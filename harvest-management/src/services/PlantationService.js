@@ -14,7 +14,7 @@ class PlantationDataService {
   }
 
   updatePlantation(id, data) {
-    return http.put(`/plantation/update/${id}`, data);
+    return http.put(`/plantation/edit/${id}`, data);
   }
 
   deletePlantation(id) {

@@ -13,6 +13,8 @@ import UserAdd from "./components/user/User.add";
 import UserList from "./components/user/User.list";
 import PlantationList from "./components/plantation/plantation.list";
 import PlantationAdd  from "./components/plantation/plantation.add";
+import plantationEdit from "./components/plantation/plantation.edit";
+import plantationShow  from "./components/plantation/plantation.show";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router , Switch , Route , Link} from 'react-router-dom';
 
@@ -20,47 +22,50 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark  navbar-custom">
           <a href="#" className="navbar-brand">
             Harvest Management
           </a>
           <div className="navbar-nav mr-auto">
-            <li className="nav-item">
+            <li className="nav-item mr-10">
             <Link
                 to={"/plant" }
-                className="nav-link"
+                className="nav-link text-white"
               >
                 Plantas
               </Link>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item mr-10">
             <Link
                 to={"/crop" }
-                className="nav-link"
+                className="nav-link text-white"
               >
                 Cultivos
               </Link>
             </li>
 
-            <li className="nav-item">
+           
+            
+            <li className="nav-item" >
+            <Link
+                to={"/plantation" }
+                className="nav-link text-white"
+              >
+                Plantaciones
+              </Link>
+            </li>
+
+
+            <li className="nav-item mr-10">
             <Link
                 to={"/user" }
-                className="nav-link"
+                className="nav-link text-dark"
               >
                 Usuarios
               </Link>
             </li>
 
-            
-            <li className="nav-item">
-            <Link
-                to={"/plantation" }
-                className="nav-link"
-              >
-                Plantaciones
-              </Link>
-            </li>
           </div>
         </nav>
 
@@ -80,19 +85,33 @@ class App extends Component {
             <Route  path ="/crop/show/:id"component={CropShow} />
             <Route  path ="/crop/edit/:id"component={CropEdit} />
 
+            {/* Plantation Routes */} 
+            <Route exact path ="/plantation"component={PlantationList}/>
+            <Route exact path ="/plantation/add"component={PlantationAdd}/>
+            <Route exact path ="/plantation/show/:id"component={plantationShow}/>
+            <Route exact path ="/plantation/edit/:id"component={plantationEdit}/>
+
+
+            
             {/* User Routes */}
             <Route  exact path ="/user/add" component={UserAdd} />
             <Route exact path ="/user"component={UserList}/>
 
-            {/* Plantation Routes */} 
-            <Route exact path ="/plantation"component={PlantationList}/>
-            <Route exact path ="/plantation/add"component={PlantationAdd}/>
 
             
 
           </Switch>
         </div>
+
+
+        <footer id="sticky-footer" class="py-2 bg-dark text-white-50 fixed-bottom">
+        <div class="container text-center">
+        <small>Copyright &copy; Konecta</small>
       </div>
+       </footer>
+      </div>
+      
+     
     );
   }
 }

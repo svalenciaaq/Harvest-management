@@ -11,6 +11,10 @@ let user = new Schema({
         type: String, required:false
     },
 
+    password:{
+        type: String, required:false
+    },
+
     dni:{
         type:String, required:false
     },

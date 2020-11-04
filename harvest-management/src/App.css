@@ -38,5 +38,19 @@
 }
 
 .navbar-custom { 
-  background-color: lightgreen; 
+  background-color: lawngreen; 
 } 
+
+.container-custom{
+  width: 85%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form_register{
+  width: 95%;
+  max-width: 300px;
+  margin: auto;
+  background: white;
+  border-radius: 7px;
+}
