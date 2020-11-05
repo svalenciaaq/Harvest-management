@@ -15,18 +15,29 @@ import PlantationList from "./components/plantation/plantation.list";
 import PlantationAdd  from "./components/plantation/plantation.add";
 import plantationEdit from "./components/plantation/plantation.edit";
 import plantationShow  from "./components/plantation/plantation.show";
+import home from "./components/home/home.index";
+import Login from './components/login/login.index';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './public/img/logo.jpg';
+
 import { BrowserRouter as Router , Switch , Route , Link} from 'react-router-dom';
+
 
 class App extends Component {
   render() {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark  navbar-custom">
-          <a href="#" className="navbar-brand">
-            Harvest Management
-          </a>
+         
+          <Link 
+              to={"/home"}
+              className= "navbar-brand"
+          >
+           <img src={logo} alt="Logo"  width="150" height="50" />
+          </Link>
           <div className="navbar-nav mr-auto">
+          
             <li className="nav-item mr-10">
             <Link
                 to={"/plant" }
@@ -65,6 +76,17 @@ class App extends Component {
                 Usuarios
               </Link>
             </li>
+           
+
+          
+            <li className="nav-item mr-10">
+            <Link
+                to={"/login" }
+                className="nav-link text-dark"
+              >
+                Login
+              </Link>
+            </li>
 
           </div>
         </nav>
@@ -72,6 +94,15 @@ class App extends Component {
         <div className="container mt-3">
           
           <Switch>
+
+
+            {/* Home Routes */}
+            <Route path ="/home" component={home} />
+
+
+            {/* Login Routes */}
+            <Route path ="/login" component={Login} />
+
            
            {/* Plant Routes */}
             <Route exact path ="/plant"component={PlantList} />
@@ -104,7 +135,7 @@ class App extends Component {
         </div>
 
 
-        <footer id="sticky-footer" class="py-2 bg-dark text-white-50 fixed-bottom">
+        <footer id="sticky-footer" class="py-2 footer-custom text-white-50 fixed-bottom">
         <div class="container text-center">
         <small>Copyright &copy; Konecta</small>
       </div>

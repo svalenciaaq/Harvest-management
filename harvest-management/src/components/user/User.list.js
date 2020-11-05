@@ -111,7 +111,7 @@ export default class UserList extends Component {
           </div>
         </div> */}
         <div className="col-md-6">
-          <h4>UserList</h4>
+          <h4>Users list</h4>
 
           <ul className="list-group">
             {users &&
@@ -186,7 +186,7 @@ export default class UserList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Plant</p>
+              <p>Please click on a User</p>
             </div>
           )}
         </div>
