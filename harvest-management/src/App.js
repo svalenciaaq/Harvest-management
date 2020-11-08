@@ -1,20 +1,32 @@
 import React,{Component} from 'react';
 
 import './App.css';
+
+
+
 import PlantAdd from "./components/plant/Plant.add";
 import PlantList from "./components/plant/Plant.list";
 import PlantEdit from "./components/plant/Plant.edit";
 import plantShow from "./components/plant/plant.show";
+import plantHistory from "./components/plant/plant.addhistory";
+
 import CropAdd from "./components/crop/Crop.add";
 import CropList from "./components/crop/Crop.list";
 import CropShow from "./components/crop/crop.show";
 import CropEdit from "./components/crop/Crop.edit";
+
+
+
 import UserAdd from "./components/user/User.add";
 import UserList from "./components/user/User.list";
+
+
 import PlantationList from "./components/plantation/plantation.list";
 import PlantationAdd  from "./components/plantation/plantation.add";
 import plantationEdit from "./components/plantation/plantation.edit";
 import plantationShow  from "./components/plantation/plantation.show";
+
+
 import home from "./components/home/home.index";
 import Login from './components/login/login.index';
 
@@ -109,6 +121,8 @@ class App extends Component {
             <Route exact path ="/plant/add"component={PlantAdd} />
             <Route  path ="/plant/edit/:id"component={PlantEdit} />
             <Route  path ="/plant/show/:id"component={plantShow} />
+            <Route  path ="/plant/history/:id"component={plantHistory} />
+
 
             {/* Crop Routes */}
             <Route exact path ="/crop/add"component={CropAdd}/>

@@ -4,11 +4,17 @@ import Button from "react-bootstrap/Button";
 import PlantDateService from "../../services/PlantService";
 import { Link} from "react-router-dom";
 
-
-export default class Login extends Component {
+class AddHistory extends Component {
+  
+  
     render() {
         return (
-          <h1>lel</h1>
+           <h1>wewe</h1>
         );
       }
+
 }
+
+
+
+export default AddHistory

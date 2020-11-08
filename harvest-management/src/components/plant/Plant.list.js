@@ -93,7 +93,7 @@ export default class PlantList extends Component {
     return (
       <div className="list row">
        
-     
+  
         <div className="col-md-6">
           <h4>Plant List</h4>
 
@@ -163,6 +163,15 @@ export default class PlantList extends Component {
               >
                 Show
               </Link>
+              
+                 <Link
+                to={"plant/history/" + currentPlant._id}
+                className="btn btn-primary mr-2 mt-2"
+              >
+                History
+              </Link>
+
+
 
             </div>
           ) : (

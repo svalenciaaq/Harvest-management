@@ -79,9 +79,15 @@ export default class plantShow extends Component {
               >
                 Edit
               </Link>
-            <button class="btn btn-primary mt-2" onClick={()=>this.deletePlant(this.state.id)}>
+            <button class="btn btn-primary mt-2 mr-2" onClick={()=>this.deletePlant(this.state.id)}>
             Delete
             </button>
+            <Link
+                to={"../edit/" + this.state.id}
+                className="btn btn-primary mr-2 mt-2"
+              >
+                Change
+              </Link>
 
             
         </div>
