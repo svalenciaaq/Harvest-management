@@ -10,7 +10,7 @@ class HistoryService {
   }
 
   create(data) {
-    return http.post("history/add", data);
+    return http.post("/plant/history/add", data);
   }
 
   updatePlant(id, data) {

@@ -155,8 +155,8 @@ class App extends Component {
         </div>
 
 
-        <footer id="sticky-footer" class="py-2 footer-custom text-white-50 fixed-bottom">
-        <div class="container text-center">
+        <footer id="sticky-footer" className="py-2 footer-custom text-white-50 fixed-bottom">
+        <div className="container text-center">
         <small>Copyright &copy; Konecta</small>
       </div>
        </footer>

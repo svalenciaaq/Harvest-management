@@ -86,7 +86,7 @@ export default class CropList extends Component {
   }
  */
   render() {
-    const { searchTitle, cropes, currentCrop, currentIndex } = this.state;
+    const { cropes, currentCrop, currentIndex } = this.state;
 
     return (
       <div className="list row">

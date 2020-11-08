@@ -124,7 +124,7 @@ export default class Tutorial extends Component {
 
 
   render() {
-    const { currentPlantation } = this.state;
+  
     return (
       <div> 
           <div className="edit-form">

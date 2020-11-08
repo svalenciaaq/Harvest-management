@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PlantationDataService from "../../services/PlantationService";
-import { Redirect,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ListGroup from 'react-bootstrap/ListGroup'
 
 export default class plantationShow extends Component {

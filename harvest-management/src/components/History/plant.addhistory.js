@@ -18,6 +18,7 @@ class AddHistory extends Component {
     this.state = {
         description: '',
         date: '',
+        plant:''
        
     }
 }
@@ -37,6 +38,7 @@ saveHistory(){
   var data= {
     description: this.state.description,
     date: this.state.date,
+    plant: this.props.match.params.id
    
   };
 
@@ -45,6 +47,7 @@ saveHistory(){
     this.setState({
       description: this.state.description,
       date: this.state.date,
+      plant: this.props.match.params.id,
      
     });
     console.log(response.data);
@@ -66,6 +69,7 @@ newHistory() {
   
     description: this.state.description,
     date: this.state.date,
+    plant: this.props.match.params.id,
  
     submitted:false
   });
@@ -73,8 +77,9 @@ newHistory() {
   
     render() {
         return (
-          <div className="form-wrapper container-custom">
-          <Form class = "form_register" onSubmit={this.onSubmit}>
+          <div>
+           <div className="form-wrapper container-custom">
+          <Form className ="form_register" onSubmit={this.onSubmit}>
               <Form.Group controlId="type">
                   <Form.Label>Description</Form.Label>
                   <Form.Control type="text" value={this.state.description} onChange={this.onChangeDescription} />
@@ -93,6 +98,7 @@ newHistory() {
              
        
           </Form>
+      </div>
       </div>
         );
       }

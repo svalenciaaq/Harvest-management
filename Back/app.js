@@ -34,7 +34,8 @@ app.use('/', indexRouter);
 app.use('/plant', PlantRouter);
 app.use('/crop', CropRouter);
 app.use('/user', UserRouter);
-app.use('/plantation',  PlantationRouter)
+app.use('/plantation',  PlantationRouter);
+app.use('/plant/history', HistoryRouter);
 
 
 // catch 404 and forward to error handler

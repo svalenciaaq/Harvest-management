@@ -1,19 +1,20 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Plant = mongoose.model('Plant');
+
+var plant = mongoose.model('plant');
 
 
-let planthistory = new Schema({
+let history = new Schema({
     description:{
         type: String
     },
     date:{
         type: String
     },
-    plant: { type: Schema.ObjectId, ref: "Plant" } 
+    plant: { type: Schema.ObjectId, ref: "plant" } 
 })
 
 
 
 
-module.exports = mongoose.model('planthistory', planthistory);
+module.exports = mongoose.model('history', history);

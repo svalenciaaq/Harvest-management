@@ -1,4 +1,3 @@
-
 const express = require('express')
 var router = express.Router()
 var ObjectID = require('mongoose').Types.ObjectId
@@ -13,6 +12,7 @@ controller.add = async (req, res) => {
     var newRecord = new History({
         description: req.body.description,
         date: req.body.date,
+        plant: req.body.plant
     })
 
     newRecord.save((err, docs) => {
