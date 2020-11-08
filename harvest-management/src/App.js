@@ -8,7 +8,10 @@ import PlantAdd from "./components/plant/Plant.add";
 import PlantList from "./components/plant/Plant.list";
 import PlantEdit from "./components/plant/Plant.edit";
 import plantShow from "./components/plant/plant.show";
-import plantHistory from "./components/plant/plant.addhistory";
+
+
+
+import History from "./components/History/plant.addhistory";
 
 import CropAdd from "./components/crop/Crop.add";
 import CropList from "./components/crop/Crop.list";
@@ -121,7 +124,10 @@ class App extends Component {
             <Route exact path ="/plant/add"component={PlantAdd} />
             <Route  path ="/plant/edit/:id"component={PlantEdit} />
             <Route  path ="/plant/show/:id"component={plantShow} />
-            <Route  path ="/plant/history/:id"component={plantHistory} />
+
+
+
+            <Route  path ="/plant/history/:id"component={History} />
 
 
             {/* Crop Routes */}

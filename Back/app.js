@@ -10,6 +10,7 @@ var PlantRouter = require('./routes/plant');
 var CropRouter = require('./routes/crop');
 var UserRouter = require('./routes/users');
 var PlantationRouter = require('./routes/plantation');
+var HistoryRouter = require('./routes/history');
 var app = express();
 
 // view engine setup
@@ -34,6 +35,7 @@ app.use('/plant', PlantRouter);
 app.use('/crop', CropRouter);
 app.use('/user', UserRouter);
 app.use('/plantation',  PlantationRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
