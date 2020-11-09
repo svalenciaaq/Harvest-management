@@ -11,6 +11,9 @@ let history = new Schema({
     date:{
         type: String
     },
+    tratament:{
+        type:String
+    },
     plant: { type: Schema.ObjectId, ref: "plant" } 
 })
 

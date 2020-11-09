@@ -12,6 +12,7 @@ controller.add = async (req, res) => {
     var newRecord = new History({
         description: req.body.description,
         date: req.body.date,
+        tratament: req.body.tratament,
         plant: req.body.plant
     })
 

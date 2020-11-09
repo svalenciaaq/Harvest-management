@@ -90,7 +90,7 @@ newPlant() {
   render() {
   return (
       <div className="form-wrapper container-custom">
-          <Form class = "form_register" onSubmit={this.onSubmit}>
+          <Form className = "form_register" onSubmit={this.onSubmit}>
               <Form.Group controlId="type">
                   <Form.Label>Type</Form.Label>
                   <Form.Control type="text" value={this.state.type} onChange={this.onChangeTypePlant} />
