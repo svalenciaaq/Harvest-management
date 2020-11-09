@@ -126,7 +126,7 @@ class App extends Component {
             <Route  path ="/plant/show/:id"component={plantShow} />
 
 
-
+              {/* History planst Routes */}
             <Route  path ="/plant/history/:id"component={History} />
 
 
@@ -157,7 +157,7 @@ class App extends Component {
 
         <footer id="sticky-footer" className="py-2 footer-custom text-white-50 fixed-bottom">
         <div className="container text-center">
-        <small>Copyright &copy; Konecta</small>
+        <small>Copyright &copy; Harvest manangement</small>
       </div>
        </footer>
       </div>
