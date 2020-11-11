@@ -17,7 +17,7 @@ import HistoryEdit from "./components/History/plant.edithistory";
 
 import CropAdd from "./components/crop/Crop.add";
 import CropList from "./components/crop/Crop.list";
-import CropShow from "./components/crop/crop.show";
+
 import CropEdit from "./components/crop/Crop.edit";
 
 
@@ -138,7 +138,7 @@ class App extends Component {
             {/* Crop Routes */}
             <Route exact path ="/crop/add"component={CropAdd}/>
             <Route exact path ="/crop"component={CropList}/>
-            <Route  path ="/crop/show/:id"component={CropShow} />
+           
             <Route  path ="/crop/edit/:id"component={CropEdit} />
 
             {/* Plantation Routes */} 

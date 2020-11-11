@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CropDataService from "../../services/CropService";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default class CropList extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ export default class CropList extends Component {
     });
   }
 
-  deleteCrop(id) {
+ async deleteCrop(id) {
    CropDataService.deleteCrop(id)
       .then(response => {
         console.log(response.data);
@@ -167,12 +168,12 @@ export default class CropList extends Component {
               </div>
 
               <Link
-                to={"Crop/show/" + currentCrop._id}
+                to={"Crop/edit/" + currentCrop._id}
                 className="btn btn-primary mr-2 "
               >
                 Show
               </Link>
-
+              <Button onClick={() => this.deleteCrop(currentCrop._id)}    className="btn btn-primary mt-2">Delete</Button>
            
 
             </div>
