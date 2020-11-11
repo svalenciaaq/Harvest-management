@@ -1,23 +1,23 @@
 import http from "../http-common";
 
 class HistoryService {
-  getAll() {
-    return http.get("/plant/history/list");
+  getAll(id) {
+    return http.get(`/plant/history/list/${id}`);
   }
 
   get(id) {
-    return http.get(`/history/findOne/${id}`);
+    return http.get(`plant/history/findOne/${id}`);
   }
 
   create(data) {
     return http.post("/plant/history/add", data);
   }
 
-  updatePlant(id, data) {
+  updateHistory(id, data) {
     return http.put(`/plant/history/edit/${id}`, data);
   }
 
-  deletePlant(id) {
+  deleteHistory(id) {
     return http.delete(`/plant/history/delete/${id}`);
   }
 

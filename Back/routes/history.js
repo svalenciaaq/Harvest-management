@@ -6,7 +6,7 @@ var HistoryController = require("../controllers/HistoryController");
 
 
 
-router.get('/list',HistoryController.list);
+router.get('/list/:id',HistoryController.list);
 router.delete('/delete/:id' , HistoryController.delete);
 router.post('/add', HistoryController.add);
 router.put('/edit/:id', HistoryController.edit);

@@ -22,7 +22,7 @@ class AddHistory extends Component {
         tratament:'',
         plant:'',
 
-       
+      
     }
 }
 
@@ -90,7 +90,6 @@ newHistory() {
           <div>
            <div className="form-wrapper container-custom">
           <Form className ="form_register" onSubmit={this.onSubmit}>
-         
           <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
           <Form.Control as="textarea" rows={3} value={this.state.description} onChange={this.onChangeDescription} />

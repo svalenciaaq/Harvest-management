@@ -7,11 +7,13 @@ import './App.css';
 import PlantAdd from "./components/plant/Plant.add";
 import PlantList from "./components/plant/Plant.list";
 import PlantEdit from "./components/plant/Plant.edit";
-import plantShow from "./components/plant/plant.show";
+
 
 
 
 import History from "./components/History/plant.addhistory";
+import HistoryList from "./components/History/plant.listhistory";
+import HistoryEdit from "./components/History/plant.edithistory";
 
 import CropAdd from "./components/crop/Crop.add";
 import CropList from "./components/crop/Crop.list";
@@ -27,7 +29,7 @@ import UserList from "./components/user/User.list";
 import PlantationList from "./components/plantation/plantation.list";
 import PlantationAdd  from "./components/plantation/plantation.add";
 import plantationEdit from "./components/plantation/plantation.edit";
-import plantationShow  from "./components/plantation/plantation.show";
+
 
 
 import home from "./components/home/home.index";
@@ -123,11 +125,14 @@ class App extends Component {
             <Route exact path ="/plant"component={PlantList} />
             <Route exact path ="/plant/add"component={PlantAdd} />
             <Route  path ="/plant/edit/:id"component={PlantEdit} />
-            <Route  path ="/plant/show/:id"component={plantShow} />
-
+            
 
               {/* History planst Routes */}
-            <Route  path ="/plant/history/:id"component={History} />
+              <Route exact path ="/plant/historylist/:id"component={HistoryList} />
+            <Route  path ="/plant/historylist/history/:id"component={History} />
+        
+            <Route  path ="/plant/historylist/edit/:id"component={HistoryEdit} />
+
 
 
             {/* Crop Routes */}
@@ -139,7 +144,7 @@ class App extends Component {
             {/* Plantation Routes */} 
             <Route exact path ="/plantation"component={PlantationList}/>
             <Route exact path ="/plantation/add"component={PlantationAdd}/>
-            <Route exact path ="/plantation/show/:id"component={plantationShow}/>
+      
             <Route exact path ="/plantation/edit/:id"component={plantationEdit}/>
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PlantationDataService from "../../services/PlantationService";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default class PlantationList extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ export default class PlantationList extends Component {
     });
   }
 
-  deletePlantation(id) {
+ async deletePlantation(id) {
    PlantationDataService.deletePlantation(id)
       .then(response => {
         console.log(response.data);
@@ -177,12 +178,12 @@ export default class PlantationList extends Component {
               </div>
 
               <Link
-                to={"plantation/show/" + currentPlantation._id}
+                to={"plantation/edit/" + currentPlantation._id}
                 className="btn btn-primary mr-2 mt-2"
               >
-                Show
+                Edit
               </Link>
-
+              <Button onClick={() => this.deletePlantation(currentPlantation._id)}    className="btn btn-primary mt-2">Delete</Button>
            
 
             </div>

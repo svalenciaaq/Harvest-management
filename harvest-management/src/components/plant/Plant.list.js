@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PlantDataService from "../../services/PlantService";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+
 import Modal from 'react-bootstrap/Modal'
 
 export default class PlantList extends Component {
@@ -158,19 +160,19 @@ export default class PlantList extends Component {
               </div>
 
               <Link
-                to={"plant/show/" + currentPlant._id}
+                to={"plant/edit/" + currentPlant._id}
                 className="btn btn-primary mr-2 mt-2"
               >
                 Show
               </Link>
               
                  <Link
-                to={"plant/history/" + currentPlant._id}
+                to={"plant/historylist/" + currentPlant._id}
                 className="btn btn-primary mr-2 mt-2"
               >
                 History
               </Link>
-
+              <Button onClick={() => this.deletePlant(currentPlant._id)}    className="btn btn-primary mt-2">Delete</Button>
 
 
             </div>

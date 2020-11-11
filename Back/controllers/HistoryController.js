@@ -23,7 +23,7 @@ controller.add = async (req, res) => {
   }
 
   controller.list = async ( req, res) => {
-    const historys = await History.find()
+    const historys = await History.find({"plant": req.params.id})
       .then(historys =>{
         res.send(historys)
       })
