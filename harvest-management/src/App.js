@@ -60,7 +60,7 @@ class App extends Component {
                 to={"/plant" }
                 className="nav-link text-white"
               >
-                Plantas
+                Plants
               </Link>
             </li>
 
@@ -69,7 +69,7 @@ class App extends Component {
                 to={"/crop" }
                 className="nav-link text-white"
               >
-                Cultivos
+                Crops
               </Link>
             </li>
 
@@ -80,7 +80,7 @@ class App extends Component {
                 to={"/plantation" }
                 className="nav-link text-white"
               >
-                Plantaciones
+                Plantations
               </Link>
             </li>
 
@@ -90,7 +90,7 @@ class App extends Component {
                 to={"/user" }
                 className="nav-link text-dark"
               >
-                Usuarios
+                Users
               </Link>
             </li>
            

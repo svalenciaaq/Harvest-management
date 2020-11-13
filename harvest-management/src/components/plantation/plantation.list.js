@@ -128,7 +128,7 @@ export default class PlantationList extends Component {
                 >
                   {plantation.address}
                     
-                  
+    
                 </li>
 
                 
@@ -138,7 +138,7 @@ export default class PlantationList extends Component {
           <ul>
           <Link
                 to={"plantation/add/"}
-                className="btn btn-primary mr-2 mt-2"
+                className="btn btn-success mr-2 mt-2"
               >
                 Add
               </Link>
@@ -179,11 +179,11 @@ export default class PlantationList extends Component {
 
               <Link
                 to={"plantation/edit/" + currentPlantation._id}
-                className="btn btn-primary mr-2 mt-2"
+                className="btn btn-success mr-2 mt-2"
               >
                 Edit
               </Link>
-              <Button onClick={() => this.deletePlantation(currentPlantation._id)}    className="btn btn-primary mt-2">Delete</Button>
+              <Button onClick={() => this.deletePlantation(currentPlantation._id)}    className="btn btn-success mt-2">Delete</Button>
            
 
             </div>

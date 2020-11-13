@@ -163,7 +163,7 @@ export default class PlantList extends Component {
                 to={"plant/edit/" + currentPlant._id}
                 className="btn btn-primary mr-2 mt-2"
               >
-                Show
+                Edit
               </Link>
               
                  <Link

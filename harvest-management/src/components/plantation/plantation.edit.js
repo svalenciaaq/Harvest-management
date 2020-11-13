@@ -154,7 +154,7 @@ export default class Tutorial extends Component {
           </Form>
           <button
               type="submit"
-              className="btn btn-primary mr-2 mt-2"
+              className="btn btn-success mr-2 mt-2"
               onClick={this.redirect}
             >
               back

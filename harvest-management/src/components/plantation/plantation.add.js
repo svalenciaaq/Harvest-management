@@ -94,8 +94,8 @@ savePlantation(){
                   <Form.Control type="text" value={this.state.picture} onChange={this.onChangePicturePlantation} />
               </Form.Group>
 
-              <Button onClick={this.savePlantation}  className="btn btn-primary mr-2 mt-2" type="submit">Save</Button>
-              <Link to="/plant"  className="btn btn-primary mr-2 mt-2">Back</Link>
+              <Button onClick={this.savePlantation}  className="btn btn-success mr-2 mt-2" type="submit">Save</Button>
+              <Link to="/plant"  className="btn btn-success mr-2 mt-2">Back</Link>
 
              
                   

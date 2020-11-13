@@ -3,6 +3,9 @@ var Schema = mongoose.Schema;
 
 
 let plant = new Schema({
+    id:{
+        type: String, required:false
+    },
     type:{
         type: String, required:false
     },

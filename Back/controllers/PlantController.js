@@ -10,6 +10,7 @@ var  Plant = require('../model/Plant')
 const controller = {}
 
 controller.add = async (req, res) => {
+    
     var newRecord = new Plant({
         type: req.body.type,
         date: req.body.date,

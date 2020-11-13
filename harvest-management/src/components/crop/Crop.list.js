@@ -171,7 +171,7 @@ export default class CropList extends Component {
                 to={"Crop/edit/" + currentCrop._id}
                 className="btn btn-primary mr-2 "
               >
-                Show
+                Edit
               </Link>
               <Button onClick={() => this.deleteCrop(currentCrop._id)}    className="btn btn-primary mt-2">Delete</Button>
            

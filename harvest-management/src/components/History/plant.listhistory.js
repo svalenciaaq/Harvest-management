@@ -96,12 +96,18 @@ export default class Historylist extends Component {
       
       <h4>Lista de Tratamientos</h4>
         
+        <div className= "row">
+      
+          <Link to={"history/"+ this.props.match.params.id}  className="btn btn-success ml-4 mr-2 mb-2" align="left">Add</Link>
+          <Link to={"/plant"}  className="btn btn-success ml-2 mr-2 mb-2" align="left">Back</Link>
+          
+        </div>
       <div className="row">
-
+     
         <div className="col-md-12">
-
+       
           <table className="table table-bordered">
-            <thead className="thead-dark">
+            <thead className="thead-light">
               <tr>
   
                 <th scope="col">Descripcion</th>
@@ -121,8 +127,8 @@ export default class Historylist extends Component {
                 <td>{item.date}</td>
                 <td>{item.tratament}</td>
                 <td>
-                <Link to={"edit/"+ item._id}  className="btn btn-primary mr-2 ">Edit</Link>
-                <Button onClick={() => this.deleteHistory(item._id)}    className="btn btn-primary">Delete</Button>
+                <Link to={"edit/"+ item._id}  className="btn btn-success mr-2 ">Edit</Link>
+                <Button onClick={() => this.deleteHistory(item._id)}    className="btn btn-success">Delete</Button>
                 </td>
               </tr>
 
