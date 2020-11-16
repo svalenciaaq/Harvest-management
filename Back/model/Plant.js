@@ -7,19 +7,19 @@ let plant = new Schema({
         type: String, required:false
     },
     type:{
-        type: String, required:false
+        type: String, required:true
     },
 
     date:{
-        type:String, required:false
+        type:String, required:true
     },
 
     picture:{
-        type:String
+        type:String, required:true
     },
 
     crop:{
-        type:String, required:false
+        type:String, required:true
     },
 
 })

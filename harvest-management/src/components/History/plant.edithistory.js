@@ -6,20 +6,19 @@ import Button from "react-bootstrap/Button";
 export default class EditHistory extends Component {
   constructor(props) {
     super(props);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
-    this.onChangeTratament = this.onChangeTratament.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.getHistory = this.getHistory.bind(this);
     this.updateHistory = this.updateHistory.bind(this);
     
     this.state = {
-      currentHistory: {
+      
         _id: null,
         description: '',
         date: '',
         tratament: '',
-       
-      },
+        plant:'',
+        errors:[]
     };
   }
 
@@ -28,48 +27,6 @@ export default class EditHistory extends Component {
     console.log(this.props.match.params.id);
   }
 
-  onChangeDescription(e) {
-    const description = e.target.value;
-   
-    this.setState(function(prevState) {
-      return {
-        currentHistory: {
-          ...prevState.currentHistory,
-          description: description
-         
-        }
-        
-      };
-      
-    });
-
-  }
-  
-  onChangeDate(e) {
-    const date = e.target.value;
-    
-    this.setState(function(prevState) {
-      return {
-        currentHistory: {
-          ...prevState.currentHistory,
-          date: date
-        }
-      };
-    });
-  }
-  
-  onChangeTratament(e) {
-    const tratament = e.target.value;
-    
-    this.setState(function(prevState) {
-      return {
-        currentHistory: {
-          ...prevState.currentHistory,
-          tratament: tratament
-        }
-      };
-    });
-  }
   
 
   
@@ -78,7 +35,12 @@ export default class EditHistory extends Component {
     historyDataService.get(id)
       .then(response => {
         this.setState({
-          currentHistory: response.data
+          _id:response.data._id,
+          description: response.data.description,
+          date: response.data.date,
+          tratament: response.data.tratament,
+          plant:response.data.plant
+     
         });
         console.log(response.data);
         console.log(this.state.currentHistory.description);
@@ -90,10 +52,17 @@ export default class EditHistory extends Component {
   }
 
   updateHistory() {
-    console.log(this.state.currentHistory._id)
+    var data= {
+      description: this.state.description,
+      date: this.state.date,
+      tratament:this.state.tratament,
+      plant: this.state.plant
+     
+    };
+  
     historyDataService.updateHistory(
-      this.state.currentHistory._id,
-      this.state.currentHistory
+      this.state._id,
+      data
     )
       .then(response => {
         console.log(response.data);
@@ -105,7 +74,56 @@ export default class EditHistory extends Component {
     
   }
 
+  hasError(key) {
+    return this.state.errors.indexOf(key) !== -1;
+  }
+  
+  handleInputChange(event) {
+    var key = event.target.name;
+    var value = event.target.value;
+    var obj = {};
+    obj[key] = value;
+    this.setState(obj);
+  }
+  
+  handleSubmit(event) {
+    event.preventDefault();
+  
+    //VALIDATE
+    var errors = [];
+  
+    //type
+    if (this.state.description === "") {
+      errors.push("description");
+    }
+  
+    if (this.state.date === "") {
+      errors.push("date");
+    }
+  
+  
+    if (this.state.tratament === "") {
+      errors.push("tratament");
+    }
+  
+  
+  
    
+    //date
+  
+  
+  
+    this.setState({
+      errors: errors
+    });
+  
+    if (errors.length > 0) {
+      return false;
+    } else {
+     this.updateHistory()
+    }
+  }
+    
 
 
 
@@ -113,34 +131,91 @@ export default class EditHistory extends Component {
 
     return (
       <div className="form-wrapper">
-          <Form onSubmit={this.onSubmit}>
-              <Form.Group controlId="description">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control type="text" value={this.state.currentHistory.description} onChange={this.onChangeDescription} />
-              </Form.Group>
+           <form className="row">
+          <div className="col-lg-6">
+            <label htmlFor="description">Description</label>
+            <input
+              autoComplete="off"
+              className={
+                this.hasError("description")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+              name="description"
+              value={this.state.description}
+              onChange={this.handleInputChange}
+            />
 
-              <Form.Group controlId="date">
-                  <Form.Label>Date</Form.Label>
-                  <Form.Control type="date" value={this.state.currentHistory.date} onChange={this.onChangeDate} />
-              </Form.Group>
 
-              <Form.Group controlId="tratament">
-                  <Form.Label>Tratament</Form.Label>
-                  <Form.Control type="text" value={this.state.currentHistory.tratament} onChange={this.onChangeTratament} />
-              </Form.Group>
-
-        
-
-              <Button onClick={this.updateHistory} className="btn btn-primary mr-2 " type="submit">Save</Button>
-              <button
-              type="submit"
-              className="btn btn-primary mr-2 "
-              onClick={this.redirect}
+            <div
+              className={
+                this.hasError("description") ? "inline-errormsg" : "hidden"
+              }
             >
-              back
+              Please enter a value
+            </div>
+          </div>
+  
+  
+          <div className="col-lg-6">
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              autoComplete="off"
+              className={
+                this.hasError("date")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+              name="date"
+              value={this.state.date}
+              onChange={this.handleInputChange}
+            />
+            <div
+              className={
+                this.hasError("date") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
+          </div>
+  
+
+  
+          <div className="col-lg-6">
+            <label htmlFor="tratament">Tratament</label>
+            <select autoComplete="off" className={
+                this.hasError("tratament")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              } name="tratament" value={this.state.tratament} onChange={this.handleInputChange}>
+                <option value=""></option>
+                  <option value="grapefruit">Grapefruit</option>
+                  <option value="lime">Lime</option>
+                  <option value="coconut">Coconut</option>
+                  <option value="mango">Mango</option>
+          </select>
+    
+            <div
+              className={
+                this.hasError("tratament") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
+          </div>
+  
+          <div className="col-lg-12  padd-top mt-2">
+            <button className="btn btn-success" onClick={this.handleSubmit}>
+              Submit
             </button>
-         
-          </Form>
+  
+  
+            <button className="btn btn-success ml-2" onClick={this.handleSubmit}>
+              Back
+            </button>
+          </div>
+        </form>
 
       </div>
   );

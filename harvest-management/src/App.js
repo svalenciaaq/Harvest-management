@@ -32,8 +32,8 @@ import plantationEdit from "./components/plantation/plantation.edit";
 
 
 
-import home from "./components/home/home.index";
-import Login from './components/login/login.index';
+
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './public/img/logo.jpg';
@@ -113,12 +113,6 @@ class App extends Component {
           <Switch>
 
 
-            {/* Home Routes */}
-            <Route path ="/home" component={home} />
-
-
-            {/* Login Routes */}
-            <Route path ="/login" component={Login} />
 
            
            {/* Plant Routes */}
@@ -160,7 +154,7 @@ class App extends Component {
         </div>
 
 
-        <footer id="sticky-footer" className="py-2 footer-custom text-white-50 fixed-bottom">
+        <footer id="footer" className="py-2 footer-custom text-white-50 mt-2 navbar-fixed-bottom">
         <div className="container text-center">
         <small>Copyright &copy; Harvest manangement</small>
       </div>

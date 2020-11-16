@@ -9,11 +9,11 @@ class AddHistory extends Component {
     super(props);
 
     // setting up function
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
-    this.onChangeTratament= this.onChangeTratament.bind(this);
+ 
     this.saveHistory = this.saveHistory.bind(this);
     this.newHistory = this.newHistory.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
    
     // setting up state
     this.state = {
@@ -22,22 +22,11 @@ class AddHistory extends Component {
         tratament:'',
         plant:'',
 
+        errors:[]
       
     }
 }
 
-
-onChangeDescription(e) {
-  this.setState({description: e.target.value})
-}
-
-onChangeDate(e) {
-  this.setState({date: e.target.value})
-}
-
-onChangeTratament(e){
-  this.setState({tratament: e.target.value})
-}
 
 
 
@@ -84,37 +73,145 @@ newHistory() {
     submitted:false
   });
 }
+
+
+hasError(key) {
+  return this.state.errors.indexOf(key) !== -1;
+}
+
+handleInputChange(event) {
+  var key = event.target.name;
+  var value = event.target.value;
+  var obj = {};
+  obj[key] = value;
+  this.setState(obj);
+}
+
+handleSubmit(event) {
+  event.preventDefault();
+
+  //VALIDATE
+  var errors = [];
+
+  //type
+  if (this.state.description === "") {
+    errors.push("description");
+  }
+
+  if (this.state.date === "") {
+    errors.push("date");
+  }
+
+
+  if (this.state.tratament === "") {
+    errors.push("tratament");
+  }
+
+
+
+ 
+  //date
+
+
+
+  this.setState({
+    errors: errors
+  });
+
+  if (errors.length > 0) {
+    return false;
+  } else {
+   this.saveHistory()
+  }
+}
   
     render() {
         return (
-          <div>
-           <div className="form-wrapper container-custom">
-          <Form className ="form_register" onSubmit={this.onSubmit}>
-          <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows={3} value={this.state.description} onChange={this.onChangeDescription} />
-          </Form.Group>
-        
-              <Form.Group controlId="date">
-                  <Form.Label>Date:</Form.Label>
-                  <Form.Control type="date" value={this.state.date} onChange={this.onChangeDate} />
-              </Form.Group>
+          <form className="row">
+          <div className="col-lg-6">
+            <label htmlFor="description">Description</label>
+            <input
+              autoComplete="off"
+              className={
+                this.hasError("description")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+              name="description"
+              value={this.state.description}
+              onChange={this.handleInputChange}
+            />
 
-              <Form.Group controlId="exampleForm.SelectCustom">
-              <Form.Label>Tratament</Form.Label>
-              <Form.Control as="select" custom value={this.state.tratament}  onChange={this.onChangeTratament}> 
-              <option>Riego</option>
-              <option>Poda</option>
-              <option>Fertilizante</option>
-              <option>Clonacion</option>
-              </Form.Control>
-              </Form.Group>
 
-              <Button onClick={this.saveHistory}  className="btn btn-primary mr-2 " type="submit">Save</Button>
-              <Link to="/plant"  className="btn btn-primary mr-2 ">Back</Link>
-          </Form>
-      </div>
-      </div>
+            <div
+              className={
+                this.hasError("description") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
+          </div>
+  
+  
+          <div className="col-lg-6">
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              autoComplete="off"
+              className={
+                this.hasError("date")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+              name="date"
+              value={this.state.date}
+              onChange={this.handleInputChange}
+            />
+            <div
+              className={
+                this.hasError("date") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
+          </div>
+  
+
+  
+          <div className="col-lg-6">
+            <label htmlFor="tratament">Tratament</label>
+            <select autoComplete="off" className={
+                this.hasError("tratament")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              } name="tratament" value={this.state.tratament} onChange={this.handleInputChange}>
+                <option value=""></option>
+                  <option value="grapefruit">Grapefruit</option>
+                  <option value="lime">Lime</option>
+                  <option value="coconut">Coconut</option>
+                  <option value="mango">Mango</option>
+          </select>
+    
+            <div
+              className={
+                this.hasError("tratament") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
+          </div>
+  
+          <div className="col-lg-12  padd-top mt-2">
+            <button className="btn btn-success" onClick={this.handleSubmit}>
+              Submit
+            </button>
+  
+  
+            <button className="btn btn-success ml-2" onClick={this.handleSubmit}>
+              Back
+            </button>
+          </div>
+        </form>
         );
       }
 

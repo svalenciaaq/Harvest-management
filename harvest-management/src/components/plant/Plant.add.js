@@ -1,126 +1,219 @@
-import React, { Component } from 'react';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React from "react";
 import PlantDateService from "../../services/PlantService";
-import { Link} from "react-router-dom";
 
-class CreatePlant extends Component {
 
+
+
+
+class Plant extends React.Component {
   constructor(props) {
     super(props);
 
-    // setting up function
-    this.onChangeTypePlant = this.onChangeTypePlant.bind(this)
-    this.onChangeDatePlant = this.onChangeDatePlant.bind(this)
-    this.onChangePicturePlant = this.onChangePicturePlant.bind(this)
-    this.onChangeCropPlant = this.onChangeCropPlant.bind(this)
-    this.savePlant = this.savePlant.bind(this);
-    this.newPlant = this.newPlant.bind(this);
-   
-    // setting up state
     this.state = {
-        type: '',
-        date: '',
-        picture: '',
-        crop: '',
+      type: "",
+      date: "",
+      picture:"",
+      crop:"",
+      
+      errors: []
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.savePlant = this.savePlant.bind(this);
+  }
+
+  hasError(key) {
+    return this.state.errors.indexOf(key) !== -1;
+  }
+
+  handleInputChange(event) {
+    var key = event.target.name;
+    var value = event.target.value;
+    var obj = {};
+    obj[key] = value;
+    this.setState(obj);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    //VALIDATE
+    var errors = [];
+
+    //type
+    if (this.state.type === "") {
+      errors.push("type");
     }
-}
+
+    if (this.state.date === "") {
+      errors.push("date");
+    }
 
 
-onChangeTypePlant(e) {
-  this.setState({type: e.target.value})
-}
+    if (this.state.picture === "") {
+      errors.push("picture");
+    }
 
-onChangeDatePlant(e) {
-  this.setState({date: e.target.value})
-}
 
-onChangePicturePlant(e) {
-  this.setState({picture: e.target.value})
-}
 
-onChangeCropPlant(e) {
-  this.setState({crop: e.target.value})
-}
+    if (this.state.crop === "") {
+      errors.push("crop");
+    }
 
-savePlant(){
-  var data= {
-    type: this.state.type,
-    date: this.state.date,
-    picture: this.state.picture,
-    crop: this.state.crop
-  };
+    //date
+ 
 
-  PlantDateService.create(data)
-  .then(response => {
+
     this.setState({
+      errors: errors
+    });
+
+    if (errors.length > 0) {
+      return false;
+    } else {
+     this.savePlant()
+    }
+  }
+  savePlant(){
+    var data= {
       type: this.state.type,
       date: this.state.date,
       picture: this.state.picture,
       crop: this.state.crop
+    };
+  
+    PlantDateService.create(data)
+    .then(response => {
+      this.setState({
+        type: this.state.type,
+        date: this.state.date,
+        picture: this.state.picture,
+        crop: this.state.crop
+      });
+      console.log(response.data);
+    
+    })
+    .catch(e =>{
+      console.log(e)
     });
-    console.log(response.data);
+    this.redirect()
+  }
+
+  redirect() {
+    this.props.history.push('/plant')
+  }
   
-  })
-  .catch(e =>{
-    console.log(e)
-  });
-  this.redirect()
-}
-
-
-redirect() {
-  this.props.history.push('/plant')
-}
-
-newPlant() {
-  this.setState({
-  
-    type: this.state.type,
-    date: this.state.date,
-    picture: this.state.picture,
-    crop: this.state.crop,
-    submitted:false
-  });
-
-  
-}
-
 
   render() {
-  return (
-      <div className="form-wrapper container-custom">
-          <Form className = "form_register" onSubmit={this.onSubmit}>
-              <Form.Group controlId="type">
-                  <Form.Label>Type</Form.Label>
-                  <Form.Control type="text" value={this.state.type} onChange={this.onChangeTypePlant} />
-              </Form.Group>
+    return (
+      <form className="row">
+        <div className="col-lg-6">
+          <label htmlFor="type">Type</label>
+          <input
+            autoComplete="off"
+            className={
+              this.hasError("type")
+                ? "form-control is-invalid"
+                : "form-control"
+            }
+            name="type"
+            value={this.state.type}
+            onChange={this.handleInputChange}
+          />
+          <div
+            className={
+              this.hasError("type") ? "inline-errormsg" : "hidden"
+            }
+          >
+            Please enter a value
+          </div>
+        </div>
 
-              <Form.Group controlId="date">
-                  <Form.Label>Date:</Form.Label>
-                  <Form.Control type="date" value={this.state.date} onChange={this.onChangeDatePlant} />
-              </Form.Group>
 
-              <Form.Group controlId="picture">
-                  <Form.Label>Picture</Form.Label>
-                  <Form.Control type="text" value={this.state.picture} onChange={this.onChangePicturePlant} />
-              </Form.Group>
+        <div className="col-lg-6">
+          <label htmlFor="date">Date</label>
+          <input
+            autoComplete="off"
+            className={
+              this.hasError("date")
+                ? "form-control is-invalid"
+                : "form-control"
+            }
+            name="date"
+            value={this.state.date}
+            onChange={this.handleInputChange}
+          />
+          <div
+            className={
+              this.hasError("date") ? "inline-errormsg" : "hidden"
+            }
+          >
+            Please enter a value
+          </div>
+        </div>
 
-              <Form.Group controlId="crop">
-                  <Form.Label>Crop</Form.Label>
-                  <Form.Control type="text" value={this.state.crop} onChange={this.onChangeCropPlant} />
-              </Form.Group>
 
-              <Button onClick={this.savePlant}  className="btn btn-primary mr-2 " type="submit">Save</Button>
-              <Link to="/plant"  className="btn btn-primary mr-2 ">Back</Link>
+        <div className="col-lg-6">
+          <label htmlFor="picture">Picture</label>
+          <input
+            autoComplete="off"
+            className={
+              this.hasError("picture")
+                ? "form-control is-invalid"
+                : "form-control"
+            }
+            name="picture"
+            value={this.state.picture}
+            onChange={this.handleInputChange}
+          />
+          <div
+            className={
+              this.hasError("picture") ? "inline-errormsg" : "hidden"
+            }
+          >
+            Please enter a value
+          </div>
+        </div>
 
-             
-       
-          </Form>
-      </div>
-  );
+
+
+
+        <div className="col-lg-6">
+          <label htmlFor="crop">Crop</label>
+          <input
+            autoComplete="off"
+            className={
+              this.hasError("crop")
+                ? "form-control is-invalid"
+                : "form-control"
+            }
+            name="crop"
+            value={this.state.crop}
+            onChange={this.handleInputChange}
+          />
+          <div
+            className={
+              this.hasError("crop") ? "inline-errormsg" : "hidden"
+            }
+          >
+            Please enter a value
+          </div>
+        </div>
+
+        <div className="col-lg-12  padd-top mt-2">
+          <button className="btn btn-success" onClick={this.handleSubmit}>
+            Submit
+          </button>
+
+
+          <button className="btn btn-success ml-2" onClick={this.handleSubmit}>
+            Back
+          </button>
+        </div>
+      </form>
+    );
+  }
 }
-}
 
-
-export default CreatePlant
+export default Plant

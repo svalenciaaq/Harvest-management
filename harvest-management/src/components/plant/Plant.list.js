@@ -76,7 +76,7 @@ export default class PlantList extends Component {
       
   }
 
-  /* searchTitle() {
+   searchTitle() {
     PlantDataService.findByTitle(this.state.searchTitle)
       .then(response => {
         this.setState({
@@ -87,19 +87,27 @@ export default class PlantList extends Component {
       .catch(e => {
         console.log(e);
       });
-  } */
+  } 
 
   render() {
     const {  plantas, currentPlant, currentIndex } = this.state;
   
     return (
       <div className="list row">
-       
+        
   
         <div className="col-md-6">
           <h4>Plant List</h4>
 
-          <ul className="list-group">
+          <Link
+                to={"plant/add/"}
+                className="btn btn-success
+                 mb-2 mt-2"
+              >
+                Add
+              </Link>
+
+          <ul className="list-group mb-2">
             {plantas &&
               plantas.map((plant, index) => (
                 <li
@@ -117,14 +125,7 @@ export default class PlantList extends Component {
               ))}
 
           </ul>
-          <ul>
-          <Link
-                to={"plant/add/"}
-                className="btn btn-primary  mt-2"
-              >
-                Add
-              </Link>
-          </ul>
+         
           
         </div>
         <div className="col-md-6">
