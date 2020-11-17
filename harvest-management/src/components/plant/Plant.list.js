@@ -118,6 +118,9 @@ export default class PlantList extends Component {
                   onClick={() => this.setActivePlant(plant, index)}
                   key={index}
                 >
+                   {plant.id}
+                          
+                          
                   {plant.type}
                     
                   
@@ -134,9 +137,16 @@ export default class PlantList extends Component {
               <h4>Plant</h4>
               <div>
                 <label>
+                  <strong>Id</strong>
+                </label>{" "}
+                {currentPlant.id}
+              </div>
+              <div>
+                <label>
                   <strong>Type</strong>
                 </label>{" "}
-                {currentPlant.type}
+               
+                {currentPlant.type} 
               </div>
               <div>
                 <label>

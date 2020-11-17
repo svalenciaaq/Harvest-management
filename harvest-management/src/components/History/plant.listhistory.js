@@ -3,6 +3,7 @@ import HistoryDataService from "../../services/HistoryService";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from 'react-bootstrap/Modal'
+import PlantDataService from "../../services/PlantService";
 
 export default class Historylist extends Component {
   constructor(props) {
@@ -12,9 +13,11 @@ export default class Historylist extends Component {
     this.refreshList = this.refreshList.bind(this);
     this.setActiveHistory = this.setActiveHistory.bind(this);
     this.deleteHistory = this.deleteHistory.bind(this);
+    this.getTutorial = this.getTutorial.bind(this);
   //  this.searchTitle = this.searchTitle.bind(this);
 
     this.state = {
+      id:"",
       histories: [],
       currentHistory: null,
       currentIndex: -1,
@@ -24,6 +27,7 @@ export default class Historylist extends Component {
 
   componentDidMount() {
     this.retrieveHistory();
+    this.getTutorial(this.props.match.params.id);
   }
 
   /* onChangeSearchTitle(e) {
@@ -41,6 +45,21 @@ export default class Historylist extends Component {
           histories: response.data
         });
         console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  getTutorial(id) {
+    PlantDataService.get(id)
+      .then(response => {
+        this.setState({
+          id:response.data.id,
+         
+        });
+       
+       console.log(this.state._id)
       })
       .catch(e => {
         console.log(e);
@@ -89,12 +108,12 @@ export default class Historylist extends Component {
   } */
 
   render() {
-    const {  histories, currentHistory, currentIndex } = this.state;
+    const {  histories, currentHistory, currentIndex , id} = this.state;
   
     return (
       <div className="container mt-5" align="center">
       
-      <h4>Lista de Tratamientos</h4>
+      <h4>Trataments lists</h4>
         
         <div className= "row">
       
@@ -109,11 +128,11 @@ export default class Historylist extends Component {
           <table className="table table-bordered">
             <thead className="thead-light">
               <tr>
-  
-                <th scope="col">Descripcion</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Tratamiento</th> 
-                <th scope="col">Acciones</th>
+                <th scope="col">Id</th>  
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Tratament</th> 
+                <th scope="col">Actions</th>
              
               </tr>
             </thead> 
@@ -122,7 +141,7 @@ export default class Historylist extends Component {
             {histories.map(item => (
 
               <tr key={item._id}>
-              
+                <td>{this.state.id}</td>
                 <td>{item.description}</td>
                 <td>{item.date}</td>
                 <td>{item.tratament}</td>

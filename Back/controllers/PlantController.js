@@ -10,8 +10,21 @@ var  Plant = require('../model/Plant')
 const controller = {}
 
 controller.add = async (req, res) => {
+  var ide;
+
+  plant = await Plant.find().sort({$natural:-1}).limit(1);
+  
+   
+  
+    var x = parseInt(plant[0].id);
+
     
+   var y = x + 1;
+  
+  
+
     var newRecord = new Plant({
+        id: y,
         type: req.body.type,
         date: req.body.date,
         picture: req.body.picture,

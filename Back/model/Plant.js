@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 let plant = new Schema({
     id:{
-        type: String, required:false
+        type: String, required:true
     },
     type:{
         type: String, required:true

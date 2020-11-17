@@ -1,5 +1,6 @@
 import React from "react";
 import PlantDateService from "../../services/PlantService";
+import { Link } from "react-router-dom";
 
 
 
@@ -108,32 +109,35 @@ class Plant extends React.Component {
   render() {
     return (
       <form className="row">
-        <div className="col-lg-6">
-          <label htmlFor="type">Type</label>
-          <input
-            autoComplete="off"
-            className={
-              this.hasError("type")
-                ? "form-control is-invalid"
-                : "form-control"
-            }
-            name="type"
-            value={this.state.type}
-            onChange={this.handleInputChange}
-          />
-          <div
-            className={
-              this.hasError("type") ? "inline-errormsg" : "hidden"
-            }
-          >
-            Please enter a value
+       
+       <div className="col-lg-6">
+            <label htmlFor="type">Type</label>
+            <select autoComplete="off" className={
+                this.hasError("type")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              } name="type" value={this.state.type} onChange={this.handleInputChange}>
+                <option value=""></option>
+                  <option value="Sativa">Sativa</option>
+                  <option value="Indica">Indica</option>
+                  <option value="Sativa indica">Sativa indica</option>
+                
+          </select>
+    
+            <div
+              className={
+                this.hasError("type") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
           </div>
-        </div>
 
 
         <div className="col-lg-6">
           <label htmlFor="date">Date</label>
           <input
+            type="date"
             autoComplete="off"
             className={
               this.hasError("date")
@@ -207,9 +211,7 @@ class Plant extends React.Component {
           </button>
 
 
-          <button className="btn btn-success ml-2" onClick={this.handleSubmit}>
-            Back
-          </button>
+          <Link to="/plant"  className="btn btn-success mr-2 ml-2" >Back</Link>
         </div>
       </form>
     );

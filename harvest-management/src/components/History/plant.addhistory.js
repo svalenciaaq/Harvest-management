@@ -186,9 +186,9 @@ handleSubmit(event) {
                   : "form-control"
               } name="tratament" value={this.state.tratament} onChange={this.handleInputChange}>
                 <option value=""></option>
-                  <option value="grapefruit">Grapefruit</option>
-                  <option value="lime">Lime</option>
-                  <option value="coconut">Coconut</option>
+                  <option value="Irrigation">Irrigation</option>
+                  <option value="Pruning">Pruning</option>
+                  <option value="cocout">Coconut</option>
                   <option value="mango">Mango</option>
           </select>
     
@@ -206,10 +206,8 @@ handleSubmit(event) {
               Submit
             </button>
   
-  
-            <button className="btn btn-success ml-2" onClick={this.handleSubmit}>
-              Back
-            </button>
+            <Link to={"/plant/historylist/" +this.props.match.params.id }  className="btn btn-success mr-2 ml-2" >Back</Link>
+            
           </div>
         </form>
         );

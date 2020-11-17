@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PlantDataService from "../../services/PlantService";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
@@ -125,8 +124,6 @@ export default class Tutorial extends Component {
       });
      
   }
-
- 
 
 
 
