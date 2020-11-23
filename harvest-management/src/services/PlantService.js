@@ -26,7 +26,7 @@ class PlantDataService {
   }
 
   findByTitlePlant(title) {
-    return http.get(`/?title=${title}`);
+    return http.get(`/plant/title/${title}`);
   }
 }
 

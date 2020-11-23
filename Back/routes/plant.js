@@ -11,7 +11,7 @@ router.delete('/delete/:id' , PlantController.delete);
 router.post('/add', PlantController.add);
 router.put('/edit/:id', PlantController.edit);
 router.get('/findOne/:id', PlantController.findOne);
-
+router.get(`/title/:id`,PlantController.searchId);
 
 
 module.exports = router

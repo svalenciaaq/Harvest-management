@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import HistoryDateService from "../../services/HistoryService";
 import { Link} from "react-router-dom";
+import PlanningDateService from "../../services/PlanningService";
 
 class AddHistory extends Component {
   constructor(props) {
@@ -54,6 +55,22 @@ saveHistory(){
   .catch(e =>{
     console.log(e)
   });
+
+  PlanningDateService.create(data)
+  .then(response =>{
+    this.setState({
+      date: this.state.date,
+      tratament: this.state.tratament,
+      plant: this.props.match.params.id,
+    });
+    console.log(response.data);
+  })
+  .catch(e =>{
+    console.log(e)
+  });
+
+
+
   this.redirect()
 }
 
@@ -186,10 +203,10 @@ handleSubmit(event) {
                   : "form-control"
               } name="tratament" value={this.state.tratament} onChange={this.handleInputChange}>
                 <option value=""></option>
-                  <option value="Irrigation">Irrigation</option>
-                  <option value="Pruning">Pruning</option>
-                  <option value="cocout">Coconut</option>
-                  <option value="mango">Mango</option>
+                  <option value="irrigation">Irrigation</option>
+                  <option value="pruning">Pruning</option>
+                  <option value="cloning">Cloning</option>
+                  <option value="fumigation">Fumigation</option>
           </select>
     
             <div

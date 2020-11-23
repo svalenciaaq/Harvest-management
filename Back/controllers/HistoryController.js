@@ -9,6 +9,9 @@ var  History = require('../model/History')
 const controller = {}
 
 controller.add = async (req, res) => {
+
+
+  
     var newRecord = new History({
         description: req.body.description,
         date: req.body.date,

@@ -21,13 +21,14 @@ controller.add = async (req, res) => {
     
    var y = x + 1;
   
+   var url=""
   
 
     var newRecord = new Plant({
         id: y,
         type: req.body.type,
         date: req.body.date,
-        picture: req.body.picture,
+        picture: y,
         crop:req.body.crop
     })
 
@@ -35,6 +36,8 @@ controller.add = async (req, res) => {
         if (!err) res.send(docs)
         else console.log('Error while creating new record : ' + JSON.stringify(err, undefined, 2))
     })
+
+    alert(y)
   }
 
   controller.list = async ( req, res) => {
@@ -50,11 +53,7 @@ controller.add = async (req, res) => {
       });
       
       }
-    
-    
-
-
-
+      
 controller.findOne = async (req , res) =>{
   Plant.findById(req.params.id)
   .then((plant) => {
@@ -106,6 +105,22 @@ controller.edit = async (req, res) => {
     });
 
   
+}
+
+
+controller.searchId = async (req,res) =>{
+
+  const plant = await Plant.find({"id": req.params.id})
+      .then(plant =>{
+        res.send(plant)
+      })
+        .catch(err => {
+          res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving tutorials."
+          });
+      });
+
 }
 
 

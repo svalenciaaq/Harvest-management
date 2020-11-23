@@ -30,7 +30,7 @@ import PlantationList from "./components/plantation/plantation.list";
 import PlantationAdd  from "./components/plantation/plantation.add";
 import plantationEdit from "./components/plantation/plantation.edit";
 
-
+import PlanningList from "./components/planning/plant.plannig";
 
 
 
@@ -148,7 +148,8 @@ class App extends Component {
             <Route exact path ="/user"component={UserList}/>
 
 
-            
+
+            <Route exact path ="/plant/planning/:id"component={PlanningList}/>
 
           </Switch>
         </div>
@@ -156,7 +157,7 @@ class App extends Component {
 
         <footer id="footer" className="py-2 footer-custom text-white-50 mt-2 navbar-fixed-bottom">
         <div className="container text-center">
-        <small>Copyright &copy; Harvest manangement</small>
+        <small className="text-white">nothing works better than a harvest management</small>
       </div>
        </footer>
       </div>

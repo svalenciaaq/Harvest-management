@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PlantDataService from "../../services/PlantService";
-
+import { Link } from "react-router-dom";
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
@@ -58,11 +58,6 @@ export default class Tutorial extends Component {
     }
 
 
-    if (this.state.picture === "") {
-      errors.push("picture");
-    }
-
-
 
     if (this.state.crop === "") {
       errors.push("crop");
@@ -93,7 +88,7 @@ export default class Tutorial extends Component {
           _id:response.data._id,
           type: response.data.type,
           date:response.data.date ,
-          picture:response.data.picture,
+         
           crop:response.data.crop,
         });
        
@@ -108,7 +103,6 @@ export default class Tutorial extends Component {
     var data= {
       type: this.state.type,
       date: this.state.date,
-      picture: this.state.picture,
       crop: this.state.crop
     };
     PlantDataService.updatePlant(
@@ -122,7 +116,12 @@ export default class Tutorial extends Component {
       .catch(e => {
         console.log(e);
       });
+      this.redirect()
      
+  }
+
+  redirect() {
+    this.props.history.push('/plant')
   }
 
 
@@ -131,32 +130,35 @@ export default class Tutorial extends Component {
  
     return (
       <form className="row">
-        <div className="col-lg-6">
-          <label htmlFor="type">First Name</label>
-          <input
-            autoComplete="off"
-            className={
-              this.hasError("type")
-                ? "form-control is-invalid"
-                : "form-control"
-            }
-            name="type"
-            value={this.state.type}
-            onChange={this.handleInputChange}
-          />
-          <div
-            className={
-              this.hasError("type") ? "inline-errormsg" : "hidden"
-            }
-          >
-            Please enter a value
+           <div className="col-lg-6">
+            <label htmlFor="type">Type</label>
+            <select autoComplete="off" className={
+                this.hasError("type")
+                  ? "form-control is-invalid"
+                  : "form-control"
+              } name="type" value={this.state.type} onChange={this.handleInputChange}>
+                <option value=""></option>
+                  <option value="Sativa">Sativa</option>
+                  <option value="Indica">Indica</option>
+                  <option value="Sativa indica">Sativa indica</option>
+                
+          </select>
+    
+            <div
+              className={
+                this.hasError("type") ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
           </div>
-        </div>
+
 
 
         <div className="col-lg-6">
-          <label htmlFor="date">First Name</label>
+          <label htmlFor="date">Date</label>
           <input
+          type="date"
             autoComplete="off"
             className={
               this.hasError("date")
@@ -177,52 +179,33 @@ export default class Tutorial extends Component {
         </div>
 
 
-        <div className="col-lg-6">
-          <label htmlFor="picture">First Name</label>
-          <input
-            autoComplete="off"
-            className={
-              this.hasError("picture")
-                ? "form-control is-invalid"
-                : "form-control"
-            }
-            name="picture"
-            value={this.state.picture}
-            onChange={this.handleInputChange}
-          />
-          <div
-            className={
-              this.hasError("picture") ? "inline-errormsg" : "hidden"
-            }
-          >
-            Please enter a value
-          </div>
-        </div>
-
-
-
+        
 
         <div className="col-lg-6">
-          <label htmlFor="crop">First Name</label>
-          <input
-            autoComplete="off"
-            className={
-              this.hasError("crop")
-                ? "form-control is-invalid"
-                : "form-control"
-            }
-            name="crop"
-            value={this.state.crop}
-            onChange={this.handleInputChange}
-          />
-          <div
-            className={
-              this.hasError("crop") ? "inline-errormsg" : "hidden"
-            }
-          >
-            Please enter a value
+            <label htmlFor="crop">Crop</label>
+            <select autoComplete="off" className={
+                this.hasError(["crop"])
+                  ? "form-control is-invalid"
+                  : "form-control"
+              } name="crop" value={this.state.crop} onChange={this.handleInputChange}>
+                <option value=""></option>
+                  <option value="NW-1">NW-1</option>
+                  <option value="NW-2">NW-2</option>
+                  <option value="NE-1">NE-1</option>
+                  <option value="NE-2">NE-2</option>
+                
+          </select>
+    
+            <div
+              className={
+                this.hasError(["crop"]) ? "inline-errormsg" : "hidden"
+              }
+            >
+              Please enter a value
+            </div>
           </div>
-        </div>
+
+
 
         <div className="col-lg-12  padd-top mt-2">
           <button className="btn btn-success" onClick={this.handleSubmit}>
@@ -230,9 +213,7 @@ export default class Tutorial extends Component {
           </button>
        
 
-          <button className="btn btn-success ml-2" onClick={this.handleSubmit}>
-            Back
-          </button>
+          <Link to="/plant"  className="btn btn-success mr-2 ml-2" >Back</Link>
         </div>
       </form>
     );
